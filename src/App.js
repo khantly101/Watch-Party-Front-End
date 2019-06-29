@@ -4,7 +4,10 @@ import './App.css';
 class App extends React.Component {
 	render () {
 		return (
-			<p>Hello World</p>
+			<div>
+				<p>Hello World</p>
+				<p>Hello World</p>
+			</div>
 		)
 	}
 }
