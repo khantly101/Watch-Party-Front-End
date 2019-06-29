@@ -7,7 +7,7 @@
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
-  "homepage": "https://khantly101.github.io/watch_party_fake/",
+  "homepage": "https://khantly101.github.io/Watch-Party-Front-End/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
