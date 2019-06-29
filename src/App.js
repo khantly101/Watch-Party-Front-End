@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 
 let baseURL = 'http://localhost:3003' 
 
@@ -26,7 +26,7 @@ class App extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		fetch(baseURL, {
+		fetch(baseURL + '/new', {
 			method: 'POST',
 			body: JSON.stringify(
 				{
@@ -61,4 +61,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default App
