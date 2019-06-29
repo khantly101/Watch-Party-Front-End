@@ -23,7 +23,7 @@ Socket IO USES websockets but it's not an implementation of websockets.
 
 # Technologies Used:
 
-React, CRUD(CREATE, READ, UPDATE, DELETE) using REST API, Node.js, Express, Live Chat using SocketIO, Live Video using Web RTC Video MongoDB, Mongoose, User Authentication with Express Session, Local Image Upload using to AWS Cloudfront, HTML5, Bootstrap.
+React, CRUD(CREATE, READ, UPDATE, DELETE) using REST API, Node.js, Express, Live Chat using SocketIO, Live Video using Web RTC Video MongoDB, Mongoose, User Authentication with Express Session, Local Image Upload using to AWS S3, HTML5, Bootstrap.
 
 # Features to Meet Requirements:
 
