@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-let baseURL = 'http://localhost:3003' 
+let baseURL = 'http://localhost:3003'
 
 class App extends React.Component {
 	state = {
@@ -26,7 +26,7 @@ class App extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		fetch(baseURL, {
+		fetch(baseURL + '/new', {
 			method: 'POST',
 			body: JSON.stringify(
 				{
