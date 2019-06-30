@@ -1,7 +1,12 @@
 body {
-  background-color: white;
+  background-color: teal;
 }
 
 .header {
   background-color: gray;
+}
+
+.home {
+	background-color: white;
+	border-radius: 5px;
 }
