@@ -5,7 +5,8 @@ let baseURL = 'http://localhost:3003'
 class NewUser extends React.Component {
 	state = {
 		userName: '',
-		password: ''
+		password: '',
+		wrongPass: false
 	}
 
 	handleChange = (event) => {
@@ -14,7 +15,7 @@ class NewUser extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		fetch(baseURL + '/sessions', {
+		fetch(baseURL + '/login', {
 			method: 'POST',
 			body: JSON.stringify(
 				{
@@ -24,7 +25,15 @@ class NewUser extends React.Component {
 			headers: {
 				'Content-Type': 'application/json'
 			}
-		}).then (res => res.json())
+		}).then (res => 
+			{if (res.status === 200) {
+				this.props.changeUser(this.state.userName)
+			} else {
+				this.setState({
+					wrongPass: true
+				})
+			}
+		})
 		.then (resJson => {
 			this.setState({
 				userName: '',
@@ -36,6 +45,9 @@ class NewUser extends React.Component {
 	render () {
 		return (
 			<div>
+				{
+					(this.state.wrongPass) ? <p> error </p> : null 
+				}
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="userName"></label>
 					<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>

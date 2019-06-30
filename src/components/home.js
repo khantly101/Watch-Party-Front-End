@@ -9,7 +9,7 @@ class Home extends React.Component {
 				<div className="container home">
 					<h1>Group Chat Made Simple</h1>
 					<h5>Easily create group chat rooms to begin your Chat Party. Chat! Chat! Chat!</h5>
-					<img src={Image} />
+					<img src={Image} alt="Missing" />
 					<p>Create A Free Account And Begin Your Chat Party!</p>
 					<Link to='/Create'><button>Create Free Account</button></Link>
 				</div>

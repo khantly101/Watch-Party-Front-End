@@ -26,7 +26,7 @@ class App extends React.Component {
 					<br />
 					<Route path='/' exact component={Home} />
 					<Route path='/Create' component={NewUser} />
-					<Route path='/Login' component={Login} />
+					<Route path='/Login' changeUser={this.changeUser} component={Login} />
 				</div>
 			</Router>
 		)
