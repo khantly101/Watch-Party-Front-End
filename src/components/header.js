@@ -1,4 +1,5 @@
-import React from 'react'
+import React 		from 'react'
+import { Link } 	from "react-router-dom"
 
 class Header extends React.Component {
 	render () {
@@ -9,7 +10,7 @@ class Header extends React.Component {
 						<h2>Watch Party</h2>
 					</div>
 					<div className="col-2 align-self-center">
-						<button>New User</button>
+						<Link to='/'><button>New User</button></Link>
 						<button>Log In</button>
 					</div>
 				</div>
