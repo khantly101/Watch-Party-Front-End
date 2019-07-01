@@ -1,5 +1,6 @@
 import React 								from 'react'
 import { BrowserRouter as Router, Route } 	from "react-router-dom"
+import { Redirect } 						from 'react-router'
 import Header 								from './components/header.js'
 import Home  								from './components/home.js'
 import NewUser 								from './components/newUser.js'
@@ -9,13 +10,16 @@ import './App.css'
 
 class App extends React.Component {
 	state = {
-		currentUser : ''
+		currentUser : '',
+		loggedIn : false
 	}
 
 	changeUser = (user) => {
 		this.setState({
-			currentUser: user
+			currentUser: user,
+			loggedIn: true
 		})
+		console.log(this.state)
 	}
 
 	render () {
@@ -24,9 +28,13 @@ class App extends React.Component {
 				<div>
 					<Header/>
 					<br />
-					<Route path='/' exact component={Home} />
+					{
+						(this.state.loggedIn) ? null : <Route path='/' exact component={Home} />
+					}
 					<Route path='/Create' component={NewUser} />
-					<Route path='/Login' changeUser={this.changeUser} component={Login} />
+					<Route path='/Login' render={() => (
+						this.state.loggedIn ? <Redirect to="/"/> : <Login  changeUser={this.changeUser} />)} 
+					/>
 				</div>
 			</Router>
 		)
