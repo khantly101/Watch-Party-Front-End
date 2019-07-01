@@ -7,6 +7,8 @@ import NewUser 								from './components/newUser.js'
 import Login  								from './components/login.js'
 import ChatRoom 							from './components/ChatRoom.js'
 
+
+
 import './App.css'
 
 class App extends React.Component {
@@ -23,11 +25,18 @@ class App extends React.Component {
 		console.log(this.state)
 	}
 
+	logout = () => {
+		this.setState({
+			currentUser: '',
+			loggedIn: false
+		})
+	}
+
 	render () {
 		return (
 			<Router>
 				<div>
-					<Header/>
+					<Header loggedIn={this.state.loggedIn} logout={this.logout} />
 					<br />
 					{
 						(this.state.loggedIn) ? null : <Route path='/' exact component={Home} />
