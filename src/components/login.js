@@ -52,11 +52,11 @@ class Login extends React.Component {
 					<br />
 					<form onSubmit={this.handleSubmit}>
 						<label htmlFor="userName"></label>
-						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>
+						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName" required/>
 						<br />
 						<br />
 						<label htmlFor="password"></label>
-						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password"/>
+						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password" required/>
 						<br />
 						<br />
 						<input className="btn btn-primary" type="submit" value="Log In"/>

@@ -9,12 +9,26 @@ class Header extends React.Component {
 					<div className="col-10">
 						<Link to='/'><h2>Watch Party</h2></Link>
 					</div>
-					<div className="col-1 align-self-center">
-						<Link to='/Create'><button className="btn btn-success btn-sm">New User</button></Link>
-					</div>
-					<div className="col-1 align-self-center">
-						<Link to='/Login'><button className="btn btn-primary btn-sm">Log In</button></Link>
-					</div>
+
+					{
+						this.props.loggedIn ? (
+							<div>
+								<div>
+									<button onClick={this.props.logout}>Logout</button>
+								</div>
+							</div>
+						) : 
+						(
+							<div className="col-2 row">
+								<div className="col-6 align-self-center">
+									<Link to='/Create'><button className="btn btn-success btn-sm">New User</button></Link>
+								</div>
+								<div className="col-6 align-self-center">
+									<Link to='/Login'><button className="btn btn-primary btn-sm">Log In</button></Link>
+								</div>
+							</div>
+						)
+					}
 				</div>
 			</div>
 		)
