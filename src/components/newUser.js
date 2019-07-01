@@ -6,7 +6,9 @@ class NewUser extends React.Component {
 	state = {
 		user: [],
 		userName: '',
-		password: ''
+		password: '',
+		firstName: '',
+		lastName: '',
 	}
 
 	handleChange = (event) => {
@@ -19,7 +21,9 @@ class NewUser extends React.Component {
 		this.setState({
 			user: copyUser,
 			userName: '',
-			password: ''
+			password: '',
+			firstName: '',
+			lastName: '',
 		})
 	}
 
@@ -30,17 +34,22 @@ class NewUser extends React.Component {
 			body: JSON.stringify(
 				{
 					userName: this.state.userName,
-					password: this.state.password
+					password: this.state.password,
+					firstName: this.state.firstName,
+					lastName: this.state.lastName,
 				}),
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		}).then (res => res.json())
 		.then (resJson => {
+			console.log(resJson)
 			this.handleAddUser(resJson)
 			this.setState({
 				userName: '',
-				password: ''
+				password: '',
+				firstName: '',
+				lastName: '',
 			})
 		}).catch (error => console.error({'Error': error}))
 	}
@@ -54,11 +63,19 @@ class NewUser extends React.Component {
 					<br />
 					<form onSubmit={this.handleSubmit}>
 						<label htmlFor="userName"></label>
-						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>
+						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="User Name" required/>
 						<br />
 						<br />
 						<label htmlFor="password"></label>
-						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password"/>
+						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" required/>
+						<br />
+						<br />
+						<label htmlFor="firstName"></label>
+						<input type="text" id="firstName" name="firstName" onChange={this.handleChange} value={this.state.firstName} placeholder="First Name" required/>
+						<br />
+						<br />
+						<label htmlFor="lastName"></label>
+						<input type="text" id="lastName" name="lastName" onChange={this.handleChange} value={this.state.lastName} placeholder="Last Name" required/>
 						<br />
 						<br />
 						<input className="btn btn-primary" type="submit" value="New User"/>
