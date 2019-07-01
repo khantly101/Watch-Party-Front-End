@@ -30,7 +30,8 @@ class App extends React.Component {
 						(this.state.loggedIn) ? null : <Route path='/' exact component={Home} />
 					}
 					<Route path='/Create' component={NewUser} />
-					<Route path='/Login' changeUser={this.changeUser} currentUser={this.state.currentUser} loggedIn={this.state.loggedIn} component={Login} />
+					<Route path='/Login' render={() => (
+						<Login  changeUser={this.changeUser} />)}  />
 				</div>
 			</Router>
 		)
