@@ -26,18 +26,15 @@ class Login extends React.Component {
 				'Content-Type': 'application/json'
 			}
 		}).then (res => 
-			{if (res.status === 200) {
-				console.log("logged in")
-				this.props.changeUser(this.state.userName)
-				
-			} else {
-				console.log("failed")
-				this.setState({
-					wrongPass: true
-				})
+			{
+				if (res.status === 200) {
+					console.log("logged in")
+					return res.json()
+				} 
 			}
-		})
+		)
 		.then (resJson => {
+			this.props.changeUser(resJson)
 			this.setState({
 				userName: '',
 				password: ''
@@ -52,9 +49,6 @@ class Login extends React.Component {
 					<br />
 					<h1>Log In</h1>
 					<br />
-					{
-						(this.state.wrongPass) ? <p> error </p> : null 
-					}
 					<br />
 					<form onSubmit={this.handleSubmit}>
 						<label htmlFor="userName"></label>
