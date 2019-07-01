@@ -5,9 +5,9 @@ import Header 								from './components/header.js'
 import Home  								from './components/home.js'
 import NewUser 								from './components/newUser.js'
 import Login  								from './components/login.js'
-// import ChatRoom 							from './components/ChatRoom.js'
+import ChatRoom 							from './components/ChatRoom.js'
 
-// <Route path='/Room' component={ChatRoom} />
+
 
 import './App.css'
 
@@ -45,6 +45,7 @@ class App extends React.Component {
 					<Route path='/Login' render={() => (
 						this.state.loggedIn ? <Redirect to="/"/> : <Login  changeUser={this.changeUser} />)}
 					/>
+					<Route path='/Room' component={ChatRoom} />
 				</div>
 			</Router>
 		)
