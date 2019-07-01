@@ -2,7 +2,7 @@ import React from 'react'
 
 let baseURL = 'http://localhost:3003' 
 
-class NewUser extends React.Component {
+class Login extends React.Component {
 	state = {
 		userName: '',
 		password: '',
@@ -11,6 +11,10 @@ class NewUser extends React.Component {
 
 	handleChange = (event) => {
 		this.setState({ [event.target.id]: event.target.value})
+	}
+
+	handleLogin = () => {
+		this.props.changeUser(this.state.userName)
 	}
 
 	handleSubmit = (event) => {
@@ -27,8 +31,11 @@ class NewUser extends React.Component {
 			}
 		}).then (res => 
 			{if (res.status === 200) {
-				this.props.changeUser(this.state.userName)
+				console.log("logged in")
+				this.handleLogin()
+				
 			} else {
+				console.log("failed")
 				this.setState({
 					wrongPass: true
 				})
@@ -44,20 +51,31 @@ class NewUser extends React.Component {
 
 	render () {
 		return (
-			<div>
-				{
-					(this.state.wrongPass) ? <p> error </p> : null 
-				}
-				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="userName"></label>
-					<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>
-					<label htmlFor="password"></label>
-					<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password"/>
-					<input type="submit" value="Log In"/>
-				</form>
+			<div className="container-fluid">
+				<div className="container home">
+					<br />
+					<h1>Log In</h1>
+					<br />
+					{
+						(this.state.wrongPass) ? <p> error </p> : null 
+					}
+					<br />
+					<form onSubmit={this.handleSubmit}>
+						<label htmlFor="userName"></label>
+						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>
+						<br />
+						<br />
+						<label htmlFor="password"></label>
+						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password"/>
+						<br />
+						<br />
+						<input className="btn btn-primary" type="submit" value="Log In"/>
+					</form>
+					<br />
+				</div>
 			</div>
 		)
 	}
 }
 
-export default NewUser
+export default Login

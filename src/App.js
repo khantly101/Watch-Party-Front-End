@@ -9,12 +9,14 @@ import './App.css'
 
 class App extends React.Component {
 	state = {
-		currentUser : ''
+		currentUser : '',
+		loggedIn : false
 	}
 
 	changeUser = (user) => {
 		this.setState({
-			currentUser: user
+			currentUser: user,
+			loggedIn: true
 		})
 	}
 
@@ -24,9 +26,11 @@ class App extends React.Component {
 				<div>
 					<Header/>
 					<br />
-					<Route path='/' exact component={Home} />
+					{
+						(this.state.loggedIn) ? null : <Route path='/' exact component={Home} />
+					}
 					<Route path='/Create' component={NewUser} />
-					<Route path='/Login' changeUser={this.changeUser} component={Login} />
+					<Route path='/Login' changeUser={this.changeUser} currentUser={this.state.currentUser} loggedIn={this.state.loggedIn} component={Login} />
 				</div>
 			</Router>
 		)

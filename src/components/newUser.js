@@ -47,14 +47,24 @@ class NewUser extends React.Component {
 
 	render () {
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="userName"></label>
-					<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>
-					<label htmlFor="password"></label>
-					<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password"/>
-					<input type="submit" value="New User"/>
-				</form>
+			<div className="container-fluid">
+				<div className="container home">
+					<br />
+					<h1>Create Account</h1>
+					<br />
+					<form onSubmit={this.handleSubmit}>
+						<label htmlFor="userName"></label>
+						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>
+						<br />
+						<br />
+						<label htmlFor="password"></label>
+						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password"/>
+						<br />
+						<br />
+						<input className="btn btn-primary" type="submit" value="New User"/>
+					</form>
+					<br />
+				</div>
 			</div>
 		)
 	}
