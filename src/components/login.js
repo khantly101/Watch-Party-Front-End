@@ -13,10 +13,6 @@ class Login extends React.Component {
 		this.setState({ [event.target.id]: event.target.value})
 	}
 
-	handleLogin = () => {
-		this.props.changeUser(this.state.userName)
-	}
-
 	handleSubmit = (event) => {
 		event.preventDefault()
 		fetch(baseURL + '/login', {
@@ -32,7 +28,7 @@ class Login extends React.Component {
 		}).then (res => 
 			{if (res.status === 200) {
 				console.log("logged in")
-				this.handleLogin()
+				this.props.changeUser(this.state.userName)
 				
 			} else {
 				console.log("failed")
