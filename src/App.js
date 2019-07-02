@@ -8,7 +8,7 @@ import NewUser								from './components/newUser.js'
 import Login								from './components/login.js'
 import ChatRoom								from './components/ChatRoom.js'
 import Profile								from './components/profile.js'
-
+import NewRoom								from './components/newRoom.js'
 
 import './App.css'
 
@@ -19,8 +19,6 @@ class App extends React.Component {
 		lastName: '',
 		id: '',
 		partyrooms: '',
-		img: '',
-		info: '',
 		loggedIn : false
 	}
 
@@ -76,6 +74,9 @@ class App extends React.Component {
 						this.state.loggedIn ? <Redirect to="/"/> : <Login  changeUser={this.changeUser} />)}
 					/>
 					<Route path='/Room' component={ChatRoom} />
+					<Route path='/NewRoom' render={() => (
+						<NewRoom state={this.state} /> )}
+					/>
 				</div>
 			</Router>
 		)

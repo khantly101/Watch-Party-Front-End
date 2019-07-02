@@ -6,8 +6,11 @@ class Header extends React.Component {
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-8">
+					<div className="col-6">
 						<Link to='/'><h2>Watch Party</h2></Link>
+					</div>
+					<div className="col-2">
+						<Link to='/NewRoom'><button>New Room</button></Link>
 					</div>
 
 					{
