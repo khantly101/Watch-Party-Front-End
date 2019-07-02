@@ -11,7 +11,10 @@ class ChatRoom extends React.Component {
     pic: 'Pic Test',
     chatMessage: '',
     file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-    sockIds: []
+    sockIds: [],
+    clientId: '',
+    playerIdPre: '',
+    playerId: ''
   }
   socketInit = (chatRoom,userName,pic) => {
     socket.on('connect', function() {
@@ -23,7 +26,10 @@ class ChatRoom extends React.Component {
      // Connected, let's sign-up for to receive messages for this room
      socket.emit('room', chatRoom,userName,pic, socket.id)
    })
+    socket.on('disconnect', () => {
+    let copySockIds= [...this.state.sockIds]
 
+    })
   }
   componentDidMount() {
 
@@ -42,15 +48,20 @@ class ChatRoom extends React.Component {
        })
        socket.on(`setId`, (msg,id) => {
          this.setState({
-           sockIds: [...this.state.sockIds, id]
+           sockIds: [...this.state.sockIds, id],
+           clientId: id,
+           // playerId: 'partyVideo-' + id
+           playerId: 'partyVideo'
+         }, () => {
+           console.log(this.state.playerId)
          })
           })
 
     socket.on(`play`, (msg,playerId) => {
-      console.log(msg)
-      console.log(playerId)
+      console.log('Triggering ' +  msg)
+      console.log('Triggering ' + playerId)
       // alert(`hello`)
-      window.jwplayer().play()
+      window.jwplayer(this.playerId).play()
     })
   }
 
@@ -65,6 +76,7 @@ class ChatRoom extends React.Component {
   }
 
   sendPlay = (playerId) => {
+    console.log(`Sending ` + playerId)
     socket.emit(`play`, `sendPlay` ,this.state.chatRoom,playerId)
   }
 
@@ -72,12 +84,12 @@ class ChatRoom extends React.Component {
     return (
       <React.Fragment>
         <button onClick=  { () => {
-          this.sendPlay()
+          this.sendPlay(this.state.playerId)
         }}>Play Video</button>
       <VideoPlayer
         file={this.state.file}
         sendPlay={this.sendPlay}
-        socketId={this.state.id}
+        playerId={this.state.playerId}
       />
         <form onSubmit={this.handleSubmit}>
           <input type="text" id="chatMessage" name="chatMessage" onChange={this.handleChange} value={this.state.chatMessage} placeholder="Type Message"/>

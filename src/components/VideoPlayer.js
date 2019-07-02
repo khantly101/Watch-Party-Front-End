@@ -9,7 +9,7 @@ class VideoPlayer extends React.Component {
     return (
       <React.Fragment>
         <ReactJWPlayer
-          playerId= {`partyVideo-` + this.props.id}
+          playerId= { this.props.playerId }
           playerScript= {this.state.playerScript}
           file= {this.props.file}
         />
