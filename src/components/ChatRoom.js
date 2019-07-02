@@ -11,7 +11,7 @@ class ChatRoom extends React.Component {
     pic: 'Pic Test',
     chatMessage: '',
     file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-    sockIds: [],
+    clients: [],
     clientId: '',
     playerIdPre: '',
     playerId: ''
@@ -19,17 +19,15 @@ class ChatRoom extends React.Component {
   socketInit = (chatRoom,userName,pic) => {
     socket.on('connect', function() {
       console.log(`Connection made`)
-      console.log(chatRoom)
-      console.log(userName)
-      console.log(pic)
+      console.log(`On Connection ` + chatRoom)
+      console.log(`On Connection ` + userName)
+      console.log(`On Connection ` + pic)
+      console.log(socket.id + ' ' + socket.disconnected)
+      socket.emit('clientData',chatRoom,userName,socket.id )
 
      // Connected, let's sign-up for to receive messages for this room
      socket.emit('room', chatRoom,userName,pic, socket.id)
    })
-    socket.on('disconnect', () => {
-    let copySockIds= [...this.state.sockIds]
-
-    })
   }
   componentDidMount() {
 
@@ -47,13 +45,16 @@ class ChatRoom extends React.Component {
          // $(`#messages`).append($(`<li>`).append($(`<img>`).attr(`src`, `/${pic}`).attr(`class`, `avatar img-thumbnail rounded`)).append($(`<p>`).attr(`class`, `chat-text`).text(`${ userName } : ${msg}`)))
        })
        socket.on(`setId`, (msg,id) => {
+         let newObject = {
+           sockId: id,
+           playerId: 'partyVideo-' + id
+         }
          this.setState({
-           sockIds: [...this.state.sockIds, id],
-           clientId: id,
-           // playerId: 'partyVideo-' + id
-           playerId: 'partyVideo'
+           clients: [...this.state.clients, newObject],
+           clientId: id
+           // playerId: 'partyVideo'
          }, () => {
-           console.log(this.state.playerId)
+           console.log(newObject)
          })
           })
 
@@ -63,6 +64,10 @@ class ChatRoom extends React.Component {
       // alert(`hello`)
       window.jwplayer(this.playerId).play()
     })
+
+    socket.on(`delete`, (msg,clientId) => {
+      console.log(clientId + ' ' + msg)
+       })
   }
 
   handleChange = (event) => {
@@ -83,14 +88,23 @@ class ChatRoom extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <button onClick=  { () => {
-          this.sendPlay(this.state.playerId)
-        }}>Play Video</button>
-      <VideoPlayer
-        file={this.state.file}
-        sendPlay={this.sendPlay}
-        playerId={this.state.playerId}
-      />
+
+        {
+          this.state.clients.map((clientVideo, index) => {
+            console.log(`Redering Player Socket Id ` + clientVideo)
+            return(
+
+              <VideoPlayer
+                key={index}
+                file={this.state.file}
+                playerId={clientVideo.playerId}
+                clientId= {clientVideo.sockId}
+              />
+            )
+
+          })
+        }
+
         <form onSubmit={this.handleSubmit}>
           <input type="text" id="chatMessage" name="chatMessage" onChange={this.handleChange} value={this.state.chatMessage} placeholder="Type Message"/>
           <input type="submit" value="SEND"/>
