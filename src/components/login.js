@@ -1,4 +1,4 @@
-import React from 'react'
+import React 		from 'react'
 
 let baseURL = 'http://localhost:3003' 
 
@@ -9,12 +9,10 @@ class Login extends React.Component {
 		wrongPass: false
 	}
 
+	_isMounted = false
+
 	handleChange = (event) => {
 		this.setState({ [event.target.id]: event.target.value})
-	}
-
-	handleLogin = () => {
-		this.props.changeUser(this.state.userName)
 	}
 
 	handleSubmit = (event) => {
@@ -30,23 +28,30 @@ class Login extends React.Component {
 				'Content-Type': 'application/json'
 			}
 		}).then (res => 
-			{if (res.status === 200) {
-				console.log("logged in")
-				this.handleLogin()
-				
-			} else {
-				console.log("failed")
+			{
+				if (res.status === 200) {
+					console.log("logged in")
+					return res.json()
+				} 
+			}
+		)
+		.then (resJson => {
+			this.props.changeUser(resJson)
+			if (this._isMounted) {
 				this.setState({
-					wrongPass: true
+					userName: '',
+					password: ''
 				})
 			}
-		})
-		.then (resJson => {
-			this.setState({
-				userName: '',
-				password: ''
-			})
 		}).catch (error => console.error({'Error': error}))
+	}
+
+	componentDidMount() {
+		this._isMounted = true
+	} 
+
+	componentWillUnmount() {
+		this._isMounted = false
 	}
 
 	render () {
@@ -56,17 +61,14 @@ class Login extends React.Component {
 					<br />
 					<h1>Log In</h1>
 					<br />
-					{
-						(this.state.wrongPass) ? <p> error </p> : null 
-					}
 					<br />
 					<form onSubmit={this.handleSubmit}>
 						<label htmlFor="userName"></label>
-						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName"/>
+						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName" required/>
 						<br />
 						<br />
 						<label htmlFor="password"></label>
-						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password"/>
+						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password" required/>
 						<br />
 						<br />
 						<input className="btn btn-primary" type="submit" value="Log In"/>
