@@ -1,4 +1,5 @@
 import React from 'react'
+import VideoPlayer from './VideoPlayer.js'
 import io from 'socket.io-client'
 const socket = io('http://localhost:3003')
 
@@ -7,7 +8,8 @@ class ChatRoom extends React.Component {
     chatRoom: 'Room Name Test',
     userName: 'User Name Test',
     pic: 'Pic Test',
-    chatMessage: ''
+    chatMessage: '',
+    file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
   }
 
   socketInit = (chatRoom,userName,pic) => {
@@ -49,10 +51,16 @@ class ChatRoom extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" id="chatMessage" name="chatMessage" onChange={this.handleChange} value={this.state.chatMessage} placeholder="Type Message"/>
-        <input type="submit" value="SEND"/>
-      </form>
+      <React.Fragment>
+      <VideoPlayer
+        file={this.state.file}
+      />
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" id="chatMessage" name="chatMessage" onChange={this.handleChange} value={this.state.chatMessage} placeholder="Type Message"/>
+          <input type="submit" value="SEND"/>
+        </form>
+    </React.Fragment>
+
     )
   }
 }
