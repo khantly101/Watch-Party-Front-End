@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactJWPlayer from 'react-jw-player'
 import VideoPlayer from './VideoPlayer.js'
 import io from 'socket.io-client'
 const socket = io('http://localhost:3003')
@@ -9,18 +10,20 @@ class ChatRoom extends React.Component {
     userName: 'User Name Test',
     pic: 'Pic Test',
     chatMessage: '',
-    file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
+    file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    sockIds: []
   }
-
   socketInit = (chatRoom,userName,pic) => {
     socket.on('connect', function() {
       console.log(`Connection made`)
       console.log(chatRoom)
       console.log(userName)
       console.log(pic)
+
      // Connected, let's sign-up for to receive messages for this room
-     socket.emit('room', chatRoom,userName,pic)
+     socket.emit('room', chatRoom,userName,pic, socket.id)
    })
+
   }
   componentDidMount() {
 
@@ -37,6 +40,18 @@ class ChatRoom extends React.Component {
          //Below is JQuery version, we want to do React Way
          // $(`#messages`).append($(`<li>`).append($(`<img>`).attr(`src`, `/${pic}`).attr(`class`, `avatar img-thumbnail rounded`)).append($(`<p>`).attr(`class`, `chat-text`).text(`${ userName } : ${msg}`)))
        })
+       socket.on(`setId`, (msg,id) => {
+         this.setState({
+           sockIds: [...this.state.sockIds, id]
+         })
+          })
+
+    socket.on(`play`, (msg,playerId) => {
+      console.log(msg)
+      console.log(playerId)
+      // alert(`hello`)
+      window.jwplayer().play()
+    })
   }
 
   handleChange = (event) => {
@@ -47,13 +62,22 @@ class ChatRoom extends React.Component {
   event.preventDefault()
 	socket.emit(`chat message`, this.state.chatMessage,this.state.chatRoom,this.state.pic,this.state.userName)
 
-}
+  }
+
+  sendPlay = (playerId) => {
+    socket.emit(`play`, `sendPlay` ,this.state.chatRoom,playerId)
+  }
 
   render() {
     return (
       <React.Fragment>
+        <button onClick=  { () => {
+          this.sendPlay()
+        }}>Play Video</button>
       <VideoPlayer
         file={this.state.file}
+        sendPlay={this.sendPlay}
+        socketId={this.state.id}
       />
         <form onSubmit={this.handleSubmit}>
           <input type="text" id="chatMessage" name="chatMessage" onChange={this.handleChange} value={this.state.chatMessage} placeholder="Type Message"/>
