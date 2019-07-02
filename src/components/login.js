@@ -1,4 +1,4 @@
-import React from 'react'
+import React 		from 'react'
 
 let baseURL = 'http://localhost:3003' 
 
@@ -8,6 +8,8 @@ class Login extends React.Component {
 		password: '',
 		wrongPass: false
 	}
+
+	_isMounted = false
 
 	handleChange = (event) => {
 		this.setState({ [event.target.id]: event.target.value})
@@ -35,11 +37,21 @@ class Login extends React.Component {
 		)
 		.then (resJson => {
 			this.props.changeUser(resJson)
-			this.setState({
-				userName: '',
-				password: ''
-			})
+			if (this._isMounted) {
+				this.setState({
+					userName: '',
+					password: ''
+				})
+			}
 		}).catch (error => console.error({'Error': error}))
+	}
+
+	componentDidMount() {
+		this._isMounted = true
+	} 
+
+	componentWillUnmount() {
+		this._isMounted = false
 	}
 
 	render () {
