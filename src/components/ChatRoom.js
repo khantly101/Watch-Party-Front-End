@@ -1,8 +1,6 @@
 import React			from 'react'
-
 import ReactJWPlayer	from 'react-jw-player'
 // import VideoPlayer		from './VideoPlayer.js'
-
 import io				from 'socket.io-client'
 
 const socket = io('http://localhost:3003')
@@ -17,7 +15,8 @@ class ChatRoom extends React.Component {
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
 		playerId: '',
 		clients: [],
-		clientId: ''
+		clientId: '',
+		messages: []
 	}
 	socketConnect = (chatRoom,userName,pic) => {
 			socket.on('connect', function() {
@@ -31,9 +30,10 @@ class ChatRoom extends React.Component {
 				// Connected, let's sign-up for to receive messages for this room
 				socket.emit('room', chatRoom,userName,pic,socket.id)
 			})
-			this.socketCreateObject()
+
 		}
-	socketCreateObject = () => {
+
+	componentDidMount() {
 		socket.on(`setId`, (msg,id) => {
 			let newObject = {
 				sockId: id,
@@ -47,15 +47,15 @@ class ChatRoom extends React.Component {
 					console.log(newObject)
 				})
 		})
-	}
-	socketListeners = () => {
-
 		//Listening to responses sent from server
-		socket.on(`chat message`, (msg,pic,userName) => {
-				//Looking to see if we get responses back from server
-				console.log(msg)
-				console.log(pic)
-			})
+		socket.on(`recieveMessage`, (msg,pic,userName) => {
+				 //Looking to see if we get responses back from server
+				 console.log(msg)
+				 // console.log(pic)
+				 this.setState({
+					 messages:[...this.state.messages, msg]
+				 })
+			 })
 
 		socket.on(`play`, (msg,playerId) => {
 			console.log('Triggering ' +	msg)
@@ -64,8 +64,16 @@ class ChatRoom extends React.Component {
 			window.jwplayer().play()
 		})
 
-		socket.on(`delete`, (msg,clientId) => {
-			console.log(clientId + ' ' + msg)
+		socket.on(`stop`, (msg,playerId) => {
+	 	 	console.log('Triggering ' +	msg)
+	 		console.log('Triggering ' + playerId)
+	 		// alert(`hello`)
+	 		window.jwplayer().stop()
+ 		})
+
+ 		socket.on(`delete`, (msg,clientId) => {
+	 		console.log(clientId + ' ' + msg)
+
 		})
 	}
 
@@ -75,7 +83,10 @@ class ChatRoom extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		socket.emit(`chat message`, this.state.chatMessage,this.state.chatRoom,this.state.pic,this.state.userName)
+		socket.emit(`sendMessage`, this.state.chatMessage,this.state.chatRoom,this.state.pic,this.state.userName)
+		this.setState({
+			chatMessage: ''
+		})
 	}
 	sendPlay = (playerId) => {
 		console.log(`Sending ` + playerId)
@@ -84,22 +95,30 @@ class ChatRoom extends React.Component {
 
 	sendStop = (playerId) => {
 		// console.log(`Sending ` + playerId)
-		// socket.emit(`play`, `sendStop` ,this.state.chatRoom,playerId)
-		window.jwplayer().stop()
+		socket.emit(`stop`, `sendStop` ,this.state.chatRoom,playerId)
+		// window.jwplayer().stop()
 	}
 
 	render() {
 		return (
 			<React.Fragment>
-				<button onClick={ () => { this.sendPlay() } }>Play Video</button>
-				<button onClick={ () => { this.sendStop() } }>Stop Video</button>
 				{this.socketConnect(this.state.chatRoom,this.state.userName, this.state.pic)}
-				{this.socketListeners()}
+
+				<button onClick={ () => { this.sendPlay() } }>Play Video</button>
+			 	<button onClick={ () => { this.sendStop() } }>Stop Video</button>
+
 				<ReactJWPlayer
 					playerId= { this.state.playerId }
 					playerScript= {this.state.playerScript}
 					file= {this.state.file}
 				/>
+				<div>
+					{this.state.messages.map((theMessage, index) => {
+						return (
+							<div key={index}>{theMessage}</div>
+						)
+					})}
+				</div>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" id="chatMessage" name="chatMessage" onChange={this.handleChange} value={this.state.chatMessage} placeholder="Type Message"/>
 					<input type="submit" value="SEND"/>
