@@ -1,5 +1,4 @@
 import React			from 'react'
-import ReactJWPlayer	from 'react-jw-player'
 import VideoPlayer		from './VideoPlayer.js'
 import io				from 'socket.io-client'
 

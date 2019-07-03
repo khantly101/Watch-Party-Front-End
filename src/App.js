@@ -71,7 +71,7 @@ class App extends React.Component {
 					/>
 					<Route path='/Create' component={NewUser} />
 					<Route path='/Login' render={() => (
-						this.state.loggedIn ? <Redirect to="/"/> : <Login  changeUser={this.changeUser} />)}
+						this.state.loggedIn ? <Redirect to="/"/> : <Login changeUser={this.changeUser} />)}
 					/>
 					<Route path='/Room' component={ChatRoom} />
 					<Route path='/NewRoom' render={() => (
