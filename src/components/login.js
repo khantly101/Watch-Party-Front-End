@@ -48,7 +48,7 @@ class Login extends React.Component {
 
 	componentDidMount() {
 		this._isMounted = true
-	} 
+	}
 
 	componentWillUnmount() {
 		this._isMounted = false

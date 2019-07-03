@@ -1,6 +1,6 @@
 import React 		from 'react'
 
-let baseURL = 'http://localhost:3003' 
+let baseURL = 'http://localhost:3003'
 
 class NewRoom extends React.Component {
 	state = {
