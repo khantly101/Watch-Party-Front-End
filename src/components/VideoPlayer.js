@@ -14,7 +14,6 @@ class VideoPlayer extends React.Component {
           playerScript= {this.state.playerScript}
           file= {this.props.file}
         />
-      }
       {console.log(`This Id Inside Player ` + this.props.playerId)}
 
     </React.Fragment>
