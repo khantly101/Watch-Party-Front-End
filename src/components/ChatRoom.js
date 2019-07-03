@@ -57,12 +57,12 @@ class ChatRoom extends React.Component {
 				 })
 			 })
 
- 		socket.on(`play`, (msg,playerId) => {
-	 	 	console.log('Triggering ' +	msg)
-	 		console.log('Triggering ' + playerId)
-	 		// alert(`hello`)
-	 		window.jwplayer().play()
- 		})
+		socket.on(`play`, (msg,playerId) => {
+			console.log('Triggering ' +	msg)
+			console.log('Triggering ' + playerId)
+			// alert(`hello`)
+			window.jwplayer().play()
+		})
 
 		socket.on(`stop`, (msg,playerId) => {
 	 	 	console.log('Triggering ' +	msg)
@@ -73,6 +73,7 @@ class ChatRoom extends React.Component {
 
  		socket.on(`delete`, (msg,clientId) => {
 	 		console.log(clientId + ' ' + msg)
+
 		})
 	}
 
@@ -126,4 +127,5 @@ class ChatRoom extends React.Component {
 		)
 	}
 }
+
 export default ChatRoom
