@@ -64,6 +64,13 @@ class ChatRoom extends React.Component {
 	 		window.jwplayer().play()
  		})
 
+		socket.on(`stop`, (msg,playerId) => {
+	 	 	console.log('Triggering ' +	msg)
+	 		console.log('Triggering ' + playerId)
+	 		// alert(`hello`)
+	 		window.jwplayer().stop()
+ 		})
+
  		socket.on(`delete`, (msg,clientId) => {
 	 		console.log(clientId + ' ' + msg)
 		})
@@ -87,8 +94,8 @@ class ChatRoom extends React.Component {
 
 	sendStop = (playerId) => {
 		// console.log(`Sending ` + playerId)
-		// socket.emit(`play`, `sendStop` ,this.state.chatRoom,playerId)
-		window.jwplayer().stop()
+		socket.emit(`stop`, `sendStop` ,this.state.chatRoom,playerId)
+		// window.jwplayer().stop()
 	}
 
 	render() {
