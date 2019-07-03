@@ -52,20 +52,20 @@ class ChatRoom extends React.Component {
 
 		//Listening to responses sent from server
 		socket.on(`chat message`, (msg,pic,userName) => {
-				 //Looking to see if we get responses back from server
-				 console.log(msg)
-				 console.log(pic)
-			 })
+				//Looking to see if we get responses back from server
+				console.log(msg)
+				console.log(pic)
+			})
 
- 		socket.on(`play`, (msg,playerId) => {
-	 	 	console.log('Triggering ' +	msg)
-	 		console.log('Triggering ' + playerId)
-	 		// alert(`hello`)
-	 		window.jwplayer().play()
- 		})
+		socket.on(`play`, (msg,playerId) => {
+			console.log('Triggering ' +	msg)
+			console.log('Triggering ' + playerId)
+			// alert(`hello`)
+			window.jwplayer().play()
+		})
 
- 		socket.on(`delete`, (msg,clientId) => {
-	 		console.log(clientId + ' ' + msg)
+		socket.on(`delete`, (msg,clientId) => {
+			console.log(clientId + ' ' + msg)
 		})
 	}
 
@@ -92,7 +92,7 @@ class ChatRoom extends React.Component {
 		return (
 			<React.Fragment>
 				<button onClick={ () => { this.sendPlay() } }>Play Video</button>
-			 	<button onClick={ () => { this.sendStop() } }>Stop Video</button>
+				<button onClick={ () => { this.sendStop() } }>Stop Video</button>
 				{this.socketConnect(this.state.chatRoom,this.state.userName, this.state.pic)}
 				{this.socketListeners()}
 				<ReactJWPlayer
@@ -108,4 +108,5 @@ class ChatRoom extends React.Component {
 		)
 	}
 }
+
 export default ChatRoom

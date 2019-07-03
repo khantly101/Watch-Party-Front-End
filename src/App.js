@@ -1,5 +1,5 @@
 import React								from 'react'
-import { BrowserRouter as Router, Route } 	from 'react-router-dom'
+import { BrowserRouter as Router, Route }	from 'react-router-dom'
 import { Redirect }							from 'react-router'
 
 import Header								from './components/header.js'
@@ -57,6 +57,15 @@ class App extends React.Component {
 		})
 	}
 
+	updateUser = (first, last, img, info) => {
+		this.setState({
+			firstName: first,
+			lastName: last,
+			img: img,
+			info: info
+		})
+	}
+
 	render () {
 		return (
 			<Router>
@@ -67,7 +76,7 @@ class App extends React.Component {
 						(this.state.loggedIn) ? null : <Route path='/' exact component={Home} />
 					}
 					<Route path='/Profile' render={() => (
-						<Profile state={this.state} /> )}
+						<Profile state={this.state} updateUser={this.updateUser} /> )}
 					/>
 					<Route path='/Create' component={NewUser} />
 					<Route path='/Login' render={() => (

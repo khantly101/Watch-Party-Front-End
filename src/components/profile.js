@@ -6,10 +6,10 @@ let baseURL = 'http://localhost:3003'
 
 class Profile extends React.Component {
 	state = {
-		firstName: '',
-		lastName: '',
-		img: '',
-		info: ''
+		firstName: this.props.state.firstName || '',
+		lastName: this.props.state.lastName || '',
+		img: this.props.state.img || '',
+		info: this.props.state.info || ''
 	}
 
 	handleChange = (event) => {
@@ -32,13 +32,7 @@ class Profile extends React.Component {
 			}
 		}).then (res => res.json())
 		.then (resJson => {
-			console.log(resJson)
-			this.setState({
-				firstName: '',
-				lastName: '',
-				img: '',
-				info: ''
-			})
+			this.props.updateUser(this.state.firstName, this.state.lastName, this.state.img, this.state.info)
 		}).catch (error => console.error({'Error': error}))
 	}
 
@@ -58,19 +52,19 @@ class Profile extends React.Component {
 				<div>
 					<form onSubmit={this.handleSubmit}>
 						<label htmlFor="firstName"></label>
-						<input type="text" id="firstName" name="firstName" onChange={this.handleChange} value={this.props.state.firstName} placeholder="First Name" />
+						<input type="text" id="firstName" name="firstName" onChange={this.handleChange} value={this.state.firstName} placeholder="First Name" />
 						<br />
 						<br />
 						<label htmlFor="lastName"></label>
-						<input type="text" id="lastName" name="lastName" onChange={this.handleChange} value={this.props.state.lastName} placeholder="Last Name" />
+						<input type="text" id="lastName" name="lastName" onChange={this.handleChange} value={this.state.lastName} placeholder="Last Name" />
 						<br />
 						<br />
 						<label htmlFor="img"></label>
-						<input type="text" id="img" name="img" onChange={this.handleChange} value={this.props.state.img} placeholder="Image" />
+						<input type="text" id="img" name="img" onChange={this.handleChange} value={this.state.img} placeholder="Image" />
 						<br />
 						<br />
 						<label htmlFor="info"></label>
-						<input type="text" id="info" name="info" onChange={this.handleChange} value={this.props.state.info} placeholder="Info" />
+						<input type="text" id="info" name="info" onChange={this.handleChange} value={this.state.info} placeholder="Info" />
 						<br />
 						<br />
 						<input className="btn btn-primary" type="submit" value="Update"/>
