@@ -15,7 +15,7 @@ class NewRoom extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		fetch(baseURL + '/partyroom/new', {
+		fetch(baseURL + '/partyroom/' + this.props.state.id + "/new", {
 			method: 'POST',
 			body: JSON.stringify(
 				{
