@@ -81,7 +81,7 @@ class Profile extends React.Component {
 					<Link to='/NewRoom'><button>New Room</button></Link>
 				</div>
 				<div>
-					<Link to='/NewRoom'><button>New Room</button></Link>
+					
 				</div>
 				
 			</div>
