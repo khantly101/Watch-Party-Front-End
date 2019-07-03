@@ -12,6 +12,9 @@ class Header extends React.Component {
 					<div className="col-2">
 						<Link to='/NewRoom'><button>New Room</button></Link>
 					</div>
+					<div className="col-2">
+						<Link to='/Room'><button>Chat Room</button></Link>
+					</div>
 
 					{
 						this.props.loggedIn ? (
