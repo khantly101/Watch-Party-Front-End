@@ -1,14 +1,13 @@
-import React			from 'react'
-import ReactJWPlayer	from 'react-jw-player'
-// import VideoPlayer		from './VideoPlayer.js'
-import io				from 'socket.io-client'
+import React         from 'react'
+import ReactJWPlayer from 'react-jw-player'
+import io	           from 'socket.io-client'
+
 const socket = io('http://localhost:3003')
 
 class ChatRoom extends React.Component {
 	state = {
 		partyRooms:[],
 		partyRoomIndex: '',
-		// chatRoom: 'Room Name Test',
 		userName: 'User Name Test',
 		pic: 'Pic Test',
 		chatMessage: '',
@@ -16,11 +15,11 @@ class ChatRoom extends React.Component {
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
 		playerId: '',
 		clients: [],
-		clientId: '',
-		messages: [],
+		clientId: ''
 	}
 
 	componentWillMount() {
+
 		const { rooms } = this.props.location.state
 		const { index } = this.props.location.state
 
@@ -30,17 +29,16 @@ class ChatRoom extends React.Component {
 		}, () => {
 			console.log(this.state.partyRooms)
 			console.log(this.state.partyRoomIndex)
-			console.log(this.state.partyRooms[this.state.partyRoomIndex].creator)
 		})
 	}
 
 	socketConnect = (theRoom,userName,pic) => {
 			socket.on('connect', function() {
-				// console.log(`Connection made`)
-				// console.log(`On Connection ` + chatRoom)
-				// console.log(`On Connection ` + userName)
-				// console.log(`On Connection ` + pic)
-				// console.log(socket.id + ' ' + socket.disconnected)
+				console.log(`Connection made`)
+				console.log(`On Connection ` + theRoom)
+				console.log(`On Connection ` + userName)
+				console.log(`On Connection ` + pic)
+				console.log(socket.id + ' ' + socket.disconnected)
 				socket.emit('clientData',theRoom,userName,socket.id )
 
 				// Connected, let's sign-up for to receive messages for this room
@@ -85,14 +83,12 @@ class ChatRoom extends React.Component {
 		socket.on(`play`, (msg,playerId) => {
 			// console.log('Triggering ' +	msg)
 			// console.log('Triggering ' + playerId)
-			// alert(`hello`)
 			window.jwplayer().play()
 		})
 
 		socket.on(`stop`, (msg,playerId) => {
 	 	 	// console.log('Triggering ' +	msg)
 	 		// console.log('Triggering ' + playerId)
-	 		// alert(`hello`)
 	 		window.jwplayer().stop()
  		})
 
@@ -101,7 +97,6 @@ class ChatRoom extends React.Component {
 
 		})
 	}
-
 
 	handleChange = (event) => {
 		this.setState({ [event.target.id]: event.target.value})
