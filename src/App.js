@@ -10,6 +10,7 @@ import Profile								from './components/profile.js'
 import NewRoom								from './components/newRoom.js'
 import RoomList								from './components/roomList.js'
 import UpdateRoom							from './components/updateRoom.js'
+import EditUser								from './components/editUser.js'
 
 import './App.css'
 
@@ -23,7 +24,13 @@ class App extends React.Component {
 		lastName: savedLogin.lastName || '',
 		id: savedLogin.id || '',
 		partyrooms: savedLogin.partyrooms || [],
+		img: savedLogin.img || '',
+		info: savedLogin.info || '',
 		loggedIn : savedLogin.loggedIn || false
+	}
+
+	componentDidMount() {
+		console.log(this.state)
 	}
 
 	changeUser = (user) => {
@@ -73,6 +80,8 @@ class App extends React.Component {
 			img: img,
 			info: info
 		})
+
+		localStorage.setItem('Data', JSON.stringify(this.state))
 	}
 
 	render () {
@@ -91,7 +100,10 @@ class App extends React.Component {
 						(this.state.loggedIn) ?
 								<div>
 									<Route path='/Profile' render={() => (
-										<Profile state={this.state} updateUser={this.updateUser} /> )}
+										<Profile state={this.state} /> )}
+									/>
+									<Route path='/EditProfile' render={() => (
+										<EditUser state={this.state} updateUser={this.updateUser} /> )}
 									/>
 									<Route path='/Room' component={ChatRoom} />
 									<Route path='/NewRoom' render={() => (

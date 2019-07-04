@@ -2,6 +2,10 @@ import React 		from 'react'
 import { Link } 	from 'react-router-dom'
 import Login		from './login.js'
 
+import AccountBox	from '@material-ui/icons/AccountBox'
+import LibraryAdd	from '@material-ui/icons/LibraryAdd'
+import Eject		from '@material-ui/icons/Eject'
+
 class Header extends React.Component {
 	render () {
 		return (
@@ -17,14 +21,14 @@ class Header extends React.Component {
 									<button className='btn btn-primary dropdown-toggle' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Menu</button>
 									<div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu2'>				
 										<Link to='/NewRoom'><div className='dropdown-item'>
-											New Room
+											<LibraryAdd /> New Room
 										</div></Link>
 										<Link to='/Profile'><div className='dropdown-item'>
-											Profile
+											<AccountBox /> Profile
 										</div></Link>
 										<div className='dropdown-divider' />
 										<div className='dropdown-item'>
-											<button className='btn btn-primary btn-sm buttonHead' onClick={this.props.logout}>Logout</button>
+											<button className='btn btn-primary btn-sm buttonHead' onClick={this.props.logout}><Eject /> Logout </button>
 										</div>
 									</div>
 								</div>
