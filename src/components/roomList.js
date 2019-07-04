@@ -62,6 +62,12 @@ class RoomList extends React.Component {
 											}
 										}}><th>Link</th></Link>
 										<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
+										<Link to={{ 
+											pathname: '/UpdateRoom',
+											state: {
+												room: room
+											}
+										}}><th>Update</th></Link>
 									</tr>
 								)
 							})

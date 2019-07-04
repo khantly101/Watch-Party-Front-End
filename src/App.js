@@ -10,6 +10,7 @@ import ChatRoom								from './components/ChatRoom.js'
 import Profile								from './components/profile.js'
 import NewRoom								from './components/newRoom.js'
 import RoomList								from './components/roomList.js'
+import UpdateRoom							from './components/updateRoom.js'
 
 import './App.css'
 
@@ -91,6 +92,7 @@ class App extends React.Component {
 					<Route path='/NewRoom' render={() => (
 						<NewRoom state={this.state} /> )}
 					/>
+					<Route path='/UpdateRoom' component={UpdateRoom} />
 				</div>
 			</Router>
 		)
