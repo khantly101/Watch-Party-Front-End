@@ -58,8 +58,8 @@ class Profile extends React.Component {
 				<div>
 					<Link to='/NewRoom'><button className="btn btn-primary btn-lg btn-block">Create Party Room</button></Link>
 					<div className="table-responsive">
-						<table className="table table-light">
-							<thead>
+						<table className="table table-light table-hover">
+							<thead className="thead-dark">
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Room Name</th>

@@ -40,39 +40,54 @@ class RoomList extends React.Component {
 	render () {
 		return (
 			<div className='container-fluid'>
-				<table> 
-					<tbody>
-						{
-							this.state.rooms.map((room, index) => {
-								return (
-									<tr key={index}>
-										<th>{index}</th>
-										<th>{room.roomName}</th>
-										<th>{room.description}</th>
-										<th><Link to={{ 
-											pathname: '/Room',
-											state: {
-												index: index,
-												id: room._id,
-												rooms: this.state.rooms
-											}
-										}}>Link</Link></th>
-										<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
-										<th><Link to={{ 
-											pathname: '/UpdateRoom',
-											state: {
-												room: room
-											}
-										}}>Update</Link></th>
-									</tr>
-								)
-							})
-						}
-					</tbody>
-				</table>
+				<div className="table-responsive">
+					<table className="table table-light table-hover">
+						<thead className="thead-dark">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Room Name</th>
+								<th scope="col">Description</th>
+								<th scope="col">Visit</th>
+								<th scope="col">Delete</th>
+								<th scope="col">Edit</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								this.state.rooms.map((room, index) => {
+									return (
+										<tr key={index}>
+											<th>{index}</th>
+											<th>{room.roomName}</th>
+											<th>{room.description}</th>
+											<th><Link to={{ 
+												pathname: '/Room',
+												state: {
+													index: index,
+													id: room._id,
+													rooms: this.state.rooms
+												}
+											}}>Link</Link></th>
+											<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
+											<th><Link to={{ 
+												pathname: '/UpdateRoom',
+												state: {
+													room: room
+												}
+											}}>Update</Link></th>
+										</tr>
+									)
+								})
+							}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		)
 	}
 }
 
 export default RoomList
+
+
+						
