@@ -53,21 +53,21 @@ class RoomList extends React.Component {
 										<th>{index}</th>
 										<th>{room.roomName}</th>
 										<th>{room.description}</th>
-										<Link to={{ 
+										<th><Link to={{ 
 											pathname: '/Room',
 											state: {
 												index: index,
 												id: room._id,
 												rooms: this.state.rooms
 											}
-										}}><th>Link</th></Link>
+										}}>Link</Link></th>
 										<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
-										<Link to={{ 
+										<th><Link to={{ 
 											pathname: '/UpdateRoom',
 											state: {
 												room: room
 											}
-										}}><th>Update</th></Link>
+										}}>Update</Link></th>
 									</tr>
 								)
 							})

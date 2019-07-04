@@ -6,7 +6,8 @@ class Login extends React.Component {
 	state = {
 		userName: '',
 		password: '',
-		wrongPass: false
+		wrongPass: false,
+		wrongUser: false
 	}
 
 	_isMounted = false
@@ -17,6 +18,10 @@ class Login extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
+		this.setState({
+			wrongUser: false,
+			wrongPass: false
+		})
 		fetch(baseURL + '/login', {
 			method: 'POST',
 			body: JSON.stringify(
@@ -33,15 +38,19 @@ class Login extends React.Component {
 				if (res.status === 200) {
 					console.log("logged in")
 					return res.json()
-				} else if (res.status === 400) {
+				} else if (res.status === 300) {
 					this.setState({
 						wrongPass: true
+					})
+				} else if (res.status === 400) {
+					this.setState({
+						wrongUser: true
 					})
 				}
 			}
 		)
 		.then (resJson => {
-			if (!this.state.wrongPass) {
+			if (!this.state.wrongPass && !this.state.wrongUser) {
 				this.props.changeUser(resJson)
 				if (this._isMounted) {
 					this.setState({
@@ -70,6 +79,9 @@ class Login extends React.Component {
 					<br />
 					<br />
 					<form onSubmit={this.handleSubmit}>
+						{
+							(this.state.wrongUser) ? <p>Wrong User Name</p> : null
+						}
 						<label htmlFor="userName"></label>
 						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName" required/>
 						<br />
