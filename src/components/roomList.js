@@ -1,5 +1,5 @@
 import React 		from 'react'
-import { Link } 	from "react-router-dom"
+import { Link } 	from 'react-router-dom'
 
 let baseURL = 'http://localhost:3003' 
 
@@ -26,7 +26,6 @@ class RoomList extends React.Component {
 		fetch(baseURL + '/partyroom/' + id, {
 			method: 'DELETE',
 		}).then (res => {
-			console.log(res)
 			const findIndex = this.state.rooms.findIndex(room => room._id === id)
 			const copyRoom = [...this.state.rooms]
 			copyRoom.splice(findIndex, 1)
@@ -40,43 +39,55 @@ class RoomList extends React.Component {
 
 	render () {
 		return (
-			<div className="container-fluid">
-				<table> 
-					<tbody>
-						{
-							console.log(this.state.rooms)
-						}
-						{
-							this.state.rooms.map((room, index) => {
-								return (
-									<tr key={index}>
-										<th>{index}</th>
-										<th>{room.roomName}</th>
-										<th>{room.description}</th>
-										<Link to={{ 
-											pathname: '/Room',
-											state: {
-												index: index,
-												id: room._id,
-												rooms: this.state.rooms
-											}
-										}}><th>Link</th></Link>
-										<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
-										<Link to={{ 
-											pathname: '/UpdateRoom',
-											state: {
-												room: room
-											}
-										}}><th>Update</th></Link>
-									</tr>
-								)
-							})
-						}
-					</tbody>
-				</table>
+			<div className='container-fluid'>
+				<div className="table-responsive">
+					<table className="table table-light table-hover">
+						<thead className="thead-dark">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Room Name</th>
+								<th scope="col">Description</th>
+								<th scope="col">Visit</th>
+								<th scope="col">Delete</th>
+								<th scope="col">Edit</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								this.state.rooms.map((room, index) => {
+									return (
+										<tr key={index}>
+											<th>{index}</th>
+											<th>{room.roomName}</th>
+											<th>{room.description}</th>
+											<th><Link to={{ 
+												pathname: '/Room',
+												state: {
+													index: index,
+													id: room._id,
+													rooms: this.state.rooms
+												}
+											}}>Link</Link></th>
+											<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
+											<th><Link to={{ 
+												pathname: '/UpdateRoom',
+												state: {
+													room: room
+												}
+											}}>Update</Link></th>
+										</tr>
+									)
+								})
+							}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		)
 	}
 }
 
 export default RoomList
+
+
+						

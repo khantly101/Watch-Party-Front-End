@@ -3,7 +3,7 @@ import { Redirect }		from 'react-router'
 
 let baseURL = 'http://localhost:3003' 
 
-class Home extends React.Component {
+class UpdateRoom extends React.Component {
 	state = {
 		roomName: this.props.location.state.room.roomName,
 		nameSpace: this.props.location.state.room.nameSpace,
@@ -42,30 +42,30 @@ class Home extends React.Component {
 
 	render () {
 		return (
-			<div className="container-fluid">
-				<div>
+			<div className='container-fluid'>
+				<div className='container bg-white rounded'>
+					<br />
+					<h1>Update Room</h1>
 					<form onSubmit={this.handleSubmit}>
-						<label htmlFor="roomName"></label>
-						<input type="text" id="roomName" name="roomName" onChange={this.handleChange} value={this.state.roomName} placeholder="Room Name" />
+						<label htmlFor='roomName'>Room Name</label>
+						<input className='form-control' type='text' id='roomName' name='roomName' onChange={this.handleChange} value={this.state.roomName} placeholder='Room Name' />
 						<br />
+						<label htmlFor='nameSpace'>Name Space</label>
+						<input className='form-control' type='text' id='nameSpace' name='nameSpace' onChange={this.handleChange} value={this.state.nameSpace} placeholder='Name Space' />
 						<br />
-						<label htmlFor="nameSpace"></label>
-						<input type="text" id="nameSpace" name="nameSpace" onChange={this.handleChange} value={this.state.nameSpace} placeholder="Name Space" />
+						<label htmlFor='description'>Description</label>
+						<input className='form-control' type='test' id='description' name='description' onChange={this.handleChange} value={this.state.description} placeholder='Description' />
 						<br />
-						<br />
-						<label htmlFor="description"></label>
-						<input type="test" id="description" name="description" onChange={this.handleChange} value={this.state.description} placeholder="Description" />
-						<br />
-						<br />
-						<input className="btn btn-primary" type="submit" value="Update"/>
+						<input className='btn btn-primary' type='submit' value='Update'/>
 					</form>
+					<br />
 				</div>
 				{
-					this.state.redirect ?  <Redirect to="/"/> : null
+					this.state.redirect ?  <Redirect to='/'/> : null
 				}
 			</div>
 		)
 	}
 }
 
-export default Home
+export default UpdateRoom

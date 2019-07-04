@@ -5,23 +5,32 @@ import { Redirect }							from 'react-router'
 import Header								from './components/header.js'
 import Home									from './components/home.js'
 import NewUser								from './components/newUser.js'
-import Login								from './components/login.js'
 import ChatRoom								from './components/ChatRoom.js'
 import Profile								from './components/profile.js'
 import NewRoom								from './components/newRoom.js'
 import RoomList								from './components/roomList.js'
 import UpdateRoom							from './components/updateRoom.js'
+import EditUser								from './components/editUser.js'
 
 import './App.css'
 
+let savedLogin = localStorage.getItem('Data') ? JSON.parse(localStorage.getItem('Data')) : {}
+console.log(savedLogin)
+
 class App extends React.Component {
 	state = {
-		currentUser : '',
-		firstName: '',
-		lastName: '',
-		id: '',
-		partyrooms: '',
-		loggedIn : false
+		currentUser : savedLogin.currentUser || '',
+		firstName: savedLogin.firstName || '',
+		lastName: savedLogin.lastName || '',
+		id: savedLogin.id || '',
+		partyrooms: savedLogin.partyrooms || [],
+		img: savedLogin.img || '',
+		info: savedLogin.info || '',
+		loggedIn : savedLogin.loggedIn || false
+	}
+
+	componentDidMount() {
+		console.log(this.state)
 	}
 
 	changeUser = (user) => {
@@ -46,7 +55,7 @@ class App extends React.Component {
 			})
 		}
 
-
+		localStorage.setItem('Data', JSON.stringify(this.state))
 		console.log(this.state)
 	}
 
@@ -61,6 +70,7 @@ class App extends React.Component {
 			info: '',
 			loggedIn : false
 		})
+		localStorage.clear()
 	}
 
 	updateUser = (first, last, img, info) => {
@@ -70,29 +80,40 @@ class App extends React.Component {
 			img: img,
 			info: info
 		})
+
+		localStorage.setItem('Data', JSON.stringify(this.state))
 	}
 
 	render () {
 		return (
 			<Router>
 				<div>
-					<Header loggedIn={this.state.loggedIn} logout={this.logout} />
+					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser}/>
 					<br />
 					{
 						(this.state.loggedIn) ? <Route path='/' exact component={RoomList} /> : <Route path='/' exact component={Home} />
 					}
-					<Route path='/Profile' render={() => (
-						<Profile state={this.state} updateUser={this.updateUser} /> )}
-					/>
-					<Route path='/Create' component={NewUser} />
-					<Route path='/Login' render={() => (
-						this.state.loggedIn ? <Redirect to="/"/> : <Login changeUser={this.changeUser} />)}
-					/>
-					<Route path='/Room' component={ChatRoom} />
-					<Route path='/NewRoom' render={() => (
-						<NewRoom state={this.state} /> )}
-					/>
-					<Route path='/UpdateRoom' component={UpdateRoom} />
+					{
+						(this.state.loggedIn) ? <Redirect to='/'/> : <Route path='/Create' component={NewUser} />
+					}
+					{
+						(this.state.loggedIn) ?
+								<div>
+									<Route path='/Profile' render={() => (
+										<Profile state={this.state} /> )}
+									/>
+									<Route path='/EditProfile' render={() => (
+										<EditUser state={this.state} updateUser={this.updateUser} /> )}
+									/>
+									<Route path='/Room' component={ChatRoom} />
+									<Route path='/NewRoom' render={() => (
+										<NewRoom state={this.state} /> )}
+									/>
+									<Route path='/UpdateRoom' component={UpdateRoom} />
+								</div>
+						:
+							<Redirect to='/'/>
+					}
 				</div>
 			</Router>
 		)

@@ -2,15 +2,10 @@ body {
   background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
 }
 
-.header {
-  background-color: gray;
-}
-
-.home {
-	background-color: white;
-	border-radius: 5px;
-}
+/*.header {
+  border-bottom: 1px solid black;
+}*/
 
 .buttonHead {
-	width: 100px;
+	width: 125px;
 }

@@ -146,8 +146,8 @@ class ChatRoom extends React.Component {
 
 				</div>
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" id="chatMessage" name="chatMessage" onChange={this.handleChange} value={this.state.chatMessage} placeholder="Type Message"/>
-					<input type="submit" value="SEND"/>
+					<input type='text' id='chatMessage' name='chatMessage' onChange={this.handleChange} value={this.state.chatMessage} placeholder='Type Message'/>
+					<input type='submit' value='SEND'/>
 				</form>
 			</React.Fragment>
 		)
