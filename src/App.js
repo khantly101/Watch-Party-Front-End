@@ -9,6 +9,8 @@ import Login								from './components/login.js'
 import ChatRoom								from './components/ChatRoom.js'
 import Profile								from './components/profile.js'
 import NewRoom								from './components/newRoom.js'
+import RoomList								from './components/roomList.js'
+import UpdateRoom							from './components/updateRoom.js'
 
 import './App.css'
 
@@ -50,10 +52,14 @@ class App extends React.Component {
 
 	logout = () => {
 		this.setState({
-			currentUser: '',
+			currentUser : '',
+			firstName: '',
+			lastName: '',
 			id: '',
 			partyrooms: '',
-			loggedIn: false
+			img: '',
+			info: '',
+			loggedIn : false
 		})
 	}
 
@@ -73,7 +79,7 @@ class App extends React.Component {
 					<Header loggedIn={this.state.loggedIn} logout={this.logout} />
 					<br />
 					{
-						(this.state.loggedIn) ? null : <Route path='/' exact component={Home} />
+						(this.state.loggedIn) ? <Route path='/' exact component={RoomList} /> : <Route path='/' exact component={Home} />
 					}
 					<Route path='/Profile' render={() => (
 						<Profile state={this.state} updateUser={this.updateUser} /> )}
@@ -86,6 +92,7 @@ class App extends React.Component {
 					<Route path='/NewRoom' render={() => (
 						<NewRoom state={this.state} /> )}
 					/>
+					<Route path='/UpdateRoom' component={UpdateRoom} />
 				</div>
 			</Router>
 		)

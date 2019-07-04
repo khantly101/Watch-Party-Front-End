@@ -1,12 +1,14 @@
-import React 		from 'react'
+import React 			from 'react'
+import { Redirect }		from 'react-router'
 
-let baseURL = 'http://localhost:3003'
+let baseURL = 'http://localhost:3003' 
 
-class NewRoom extends React.Component {
+class Home extends React.Component {
 	state = {
-		roomName: '',
-		nameSpace: '',
-		description: ''
+		roomName: this.props.location.state.room.roomName,
+		nameSpace: this.props.location.state.room.nameSpace,
+		description: this.props.location.state.room.description,
+		redirect: false
 	}
 
 	handleChange = (event) => {
@@ -15,14 +17,13 @@ class NewRoom extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		fetch(baseURL + '/partyroom/' + this.props.state.id + "/new", {
-			method: 'POST',
+		fetch(baseURL + '/partyroom/' + this.props.location.state.room._id, {
+			method: 'PUT',
 			body: JSON.stringify(
 				{
 					roomName: this.state.roomName,
 					nameSpace: this.state.nameSpace,
 					description: this.state.description,
-					creator: this.props.state.id
 				}),
 			headers: {
 				'Content-Type': 'application/json'
@@ -33,7 +34,8 @@ class NewRoom extends React.Component {
 			this.setState({
 				roomName: '',
 				nameSpace: '',
-				description: ''
+				description: '',
+				redirect: true
 			})
 		}).catch (error => console.error({'Error': error}))
 	}
@@ -55,12 +57,15 @@ class NewRoom extends React.Component {
 						<input type="test" id="description" name="description" onChange={this.handleChange} value={this.state.description} placeholder="Description" />
 						<br />
 						<br />
-						<input className="btn btn-primary" type="submit" value="Submit"/>
+						<input className="btn btn-primary" type="submit" value="Update"/>
 					</form>
 				</div>
+				{
+					this.state.redirect ?  <Redirect to="/"/> : null
+				}
 			</div>
 		)
 	}
 }
 
-export default NewRoom
+export default Home
