@@ -65,7 +65,7 @@ class ChatRoom extends React.Component {
 		//Listening to responses sent from server
 		socket.on(`recieveMessage`, (msg,pic,userName) => {
 				 //Looking to see if we get responses back from server
-				 console.log(msg)
+				 // console.log(msg)
 				 let newObject = {
 					 pic: pic,
 					 userName: userName,
@@ -109,6 +109,7 @@ class ChatRoom extends React.Component {
 			chatMessage: ''
 		})
 	}
+
 	sendPlay = (playerId) => {
 		// console.log(`Sending ` + playerId)
 		socket.emit(`play`, `sendPlay` ,this.state.partyRooms[this.state.partyRoomIndex]._id,playerId)
@@ -117,8 +118,8 @@ class ChatRoom extends React.Component {
 	sendStop = (playerId) => {
 		// console.log(`Sending ` + playerId)
 		socket.emit(`stop`, `sendStop` ,this.state.partyRooms[this.state.partyRoomIndex]._id,playerId)
-		// window.jwplayer().stop()
 	}
+
 	render() {
 		return (
 			<React.Fragment>
