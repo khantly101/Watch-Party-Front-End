@@ -2,9 +2,9 @@ body {
   background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
 }
 
-.header {
-  background-color: gray;
-}
+/*.header {
+  border-bottom: 1px solid black;
+}*/
 
 .home {
 	background-color: white;
@@ -12,5 +12,5 @@ body {
 }
 
 .buttonHead {
-	width: 100px;
+	width: 125px;
 }

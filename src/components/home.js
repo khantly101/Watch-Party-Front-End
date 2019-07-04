@@ -6,12 +6,13 @@ class Home extends React.Component {
 	render () {
 		return (
 			<div className="container-fluid">
-				<div className="container home">
-					<h1>Group Chat Made Simple</h1>
-					<h5>Easily create group chat rooms to begin your Chat Party. Chat! Chat! Chat!</h5>
+				<div className="container jumbotron home">
+					<h2 className="display-4">Group Chat Made Simple</h2>
+					<p className="lead">Easily create group chat rooms to begin your Chat Party. Chat! Chat! Chat!</p>
 					<img src={Image} alt="Missing" />
-					<p>Create A Free Account And Begin Your Chat Party!</p>
-					<Link to='/Create'><button>Create Free Account</button></Link>
+					<hr className="my-4" />
+					<p className="lead">Create A Free Account And Begin Your Chat Party!</p>
+					<Link to='/Create'><button className="btn btn-success btn-lg">Create Free Account</button></Link>
 				</div>
 			</div>
 		)

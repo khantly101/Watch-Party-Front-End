@@ -1,4 +1,5 @@
 import React 		from 'react'
+import { Link } 	from "react-router-dom"
 
 let baseURL = 'http://localhost:3003' 
 
@@ -72,30 +73,24 @@ class Login extends React.Component {
 
 	render () {
 		return (
-			<div className="container-fluid">
-				<div className="container home">
-					<br />
-					<h1>Log In</h1>
-					<br />
-					<br />
-					<form onSubmit={this.handleSubmit}>
-						{
-							(this.state.wrongUser) ? <p>Wrong User Name</p> : null
-						}
-						<label htmlFor="userName"></label>
-						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName" required/>
-						<br />
-						<br />
-						{
-							(this.state.wrongPass) ? <p>Wrong Password</p> : null
-						}
-						<label htmlFor="password"></label>
-						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password" required/>
-						<br />
-						<br />
-						<input className="btn btn-primary" type="submit" value="Log In"/>
+			<div className="dropdown offset-6 col-6 justify-content-center">
+				<button className="btn btn-primary dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Log In</button>
+				<div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu">
+					<form className="px-4 py-3" onSubmit={this.handleSubmit}>
+						<div className="form-group">
+							<label htmlFor="userName"></label>
+							<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="User Name" required/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="password"></label>
+							<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" required/>
+						</div>
+						<input className="btn btn-primary" type="submit" value="Sign In"/>
 					</form>
-					<br />
+					<div className="dropdown-divider" />
+					<div className="dropdown-item">
+						<Link to='/Create'>New around here? Sign up</Link>
+					</div>
 				</div>
 			</div>
 		)
