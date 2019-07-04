@@ -16,7 +16,7 @@ class ChatRoom extends React.Component {
 		playerId: '',
 		clients: [],
 		clientId: '',
-		messages: []
+		messages: [],
 	}
 	socketConnect = (chatRoom,userName,pic) => {
 			socket.on('connect', function() {
@@ -34,6 +34,7 @@ class ChatRoom extends React.Component {
 		}
 
 	componentDidMount() {
+
 		socket.on(`setId`, (msg,id) => {
 			let newObject = {
 				sockId: id,

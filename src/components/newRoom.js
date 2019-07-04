@@ -22,7 +22,7 @@ class NewRoom extends React.Component {
 					roomName: this.state.roomName,
 					nameSpace: this.state.nameSpace,
 					description: this.state.description,
-					creator: this.props.state.currentUser
+					creator: this.props.state.id
 				}),
 			headers: {
 				'Content-Type': 'application/json'

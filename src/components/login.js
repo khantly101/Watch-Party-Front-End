@@ -29,21 +29,28 @@ class Login extends React.Component {
 			}
 		}).then (res => 
 			{
+				console.log(res.status)
 				if (res.status === 200) {
 					console.log("logged in")
 					return res.json()
-				} 
+				} else if (res.status === 400) {
+					this.setState({
+						wrongPass: true
+					})
+				}
 			}
 		)
 		.then (resJson => {
-			this.props.changeUser(resJson)
-			if (this._isMounted) {
-				this.setState({
-					userName: '',
-					password: ''
-				})
-			}
-		}).catch (error => console.error({'Error': error}))
+			if (!this.state.wrongPass) {
+				this.props.changeUser(resJson)
+				if (this._isMounted) {
+					this.setState({
+						userName: '',
+						password: ''
+					})
+				}
+			}	
+		}).catch (error => console.log("error"))
 	}
 
 	componentDidMount() {
@@ -67,6 +74,9 @@ class Login extends React.Component {
 						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="userName" required/>
 						<br />
 						<br />
+						{
+							(this.state.wrongPass) ? <p>Wrong Password</p> : null
+						}
 						<label htmlFor="password"></label>
 						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="password" required/>
 						<br />
