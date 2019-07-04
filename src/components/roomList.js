@@ -16,17 +16,26 @@ class RoomList extends React.Component {
 			}
 		}).then (res => res.json())
 		.then (resJson => {
-			console.log(resJson)
 			this.setState({
 				rooms: resJson
 			})
-			console.log(this.state.rooms)
+		}).catch (error => console.error({'Error': error}))
+	}
+
+	deleteRoom = (id) => {
+		fetch(baseURL + '/partyroom/' + id, {
+			method: 'DELETE',
+		}).then (res => {
+			console.log(res)
+			const findIndex = this.state.rooms.findIndex(room => room._id === id)
+			const copyRoom = [...this.state.rooms]
+			copyRoom.splice(findIndex, 1)
+			this.setState({rooms: copyRoom})
 		}).catch (error => console.error({'Error': error}))
 	}
 
 	componentDidMount () {
 		this.findRooms()
-		console.log(this.state)
 	}
 
 	render () {
@@ -48,9 +57,11 @@ class RoomList extends React.Component {
 											pathname: '/Room',
 											state: {
 												index: index,
-												id: room._id
+												id: room._id,
+												rooms: this.state.rooms
 											}
 										}}><th>Link</th></Link>
+										<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
 									</tr>
 								)
 							})
