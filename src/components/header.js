@@ -13,16 +13,17 @@ class Header extends React.Component {
 					{
 						this.props.loggedIn ? (
 							<div className='col-2 row align-self-center'>
-								<div className="dropdown offset-6 col-6 justify-content-center">
-									<button className="btn btn-primary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</button>
-									<div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">				
-										<div className="dropdown-item">
-											<Link to='/NewRoom'>New Room</Link>
-										</div>
-										<div className="dropdown-item">
-											<Link to='/Profile'>Profile</Link>
-										</div>
-										<div className="dropdown-item">
+								<div className='dropdown offset-6 col-6 justify-content-center'>
+									<button className='btn btn-primary dropdown-toggle' id='dropdownMenu2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Menu</button>
+									<div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu2'>				
+										<Link to='/NewRoom'><div className='dropdown-item'>
+											New Room
+										</div></Link>
+										<Link to='/Profile'><div className='dropdown-item'>
+											Profile
+										</div></Link>
+										<div className='dropdown-divider' />
+										<div className='dropdown-item'>
 											<button className='btn btn-primary btn-sm buttonHead' onClick={this.props.logout}>Logout</button>
 										</div>
 									</div>

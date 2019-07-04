@@ -15,7 +15,7 @@ class NewRoom extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		fetch(baseURL + '/partyroom/' + this.props.state.id + "/new", {
+		fetch(baseURL + '/partyroom/' + this.props.state.id + '/new', {
 			method: 'POST',
 			body: JSON.stringify(
 				{
@@ -40,23 +40,21 @@ class NewRoom extends React.Component {
 
 	render () {
 		return (
-			<div className="container-fluid">
-				<div>
+			<div className='container-fluid'>
+				<div className='container bg-white rounded'>
+					<br />
+					<h1>Create Room</h1>
 					<form onSubmit={this.handleSubmit}>
-						<label htmlFor="roomName"></label>
-						<input type="text" id="roomName" name="roomName" onChange={this.handleChange} value={this.state.roomName} placeholder="Room Name" />
+						<label htmlFor='roomName'></label>
+						<input className='form-control' type='text' id='roomName' name='roomName' onChange={this.handleChange} value={this.state.roomName} placeholder='Room Name' />
+						<label htmlFor='nameSpace'></label>
+						<input className='form-control' type='text' id='nameSpace' name='nameSpace' onChange={this.handleChange} value={this.state.nameSpace} placeholder='Name Space' />
+						<label htmlFor='description'></label>
+						<input className='form-control' type='test' id='description' name='description' onChange={this.handleChange} value={this.state.description} placeholder='Description' />
 						<br />
-						<br />
-						<label htmlFor="nameSpace"></label>
-						<input type="text" id="nameSpace" name="nameSpace" onChange={this.handleChange} value={this.state.nameSpace} placeholder="Name Space" />
-						<br />
-						<br />
-						<label htmlFor="description"></label>
-						<input type="test" id="description" name="description" onChange={this.handleChange} value={this.state.description} placeholder="Description" />
-						<br />
-						<br />
-						<input className="btn btn-primary" type="submit" value="Submit"/>
+						<input className='btn btn-primary' type='submit' value='Submit'/>
 					</form>
+					<br />
 				</div>
 			</div>
 		)

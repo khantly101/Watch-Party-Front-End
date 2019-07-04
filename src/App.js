@@ -13,14 +13,17 @@ import UpdateRoom							from './components/updateRoom.js'
 
 import './App.css'
 
+let savedLogin = localStorage.getItem('Data') ? JSON.parse(localStorage.getItem('Data')) : {}
+console.log(savedLogin)
+
 class App extends React.Component {
 	state = {
-		currentUser : '',
-		firstName: '',
-		lastName: '',
-		id: '',
-		partyrooms: '',
-		loggedIn : false
+		currentUser : savedLogin.currentUser || '',
+		firstName: savedLogin.firstName || '',
+		lastName: savedLogin.lastName || '',
+		id: savedLogin.id || '',
+		partyrooms: savedLogin.partyrooms || [],
+		loggedIn : savedLogin.loggedIn || false
 	}
 
 	changeUser = (user) => {
@@ -45,7 +48,7 @@ class App extends React.Component {
 			})
 		}
 
-
+		localStorage.setItem('Data', JSON.stringify(this.state))
 		console.log(this.state)
 	}
 
@@ -60,6 +63,7 @@ class App extends React.Component {
 			info: '',
 			loggedIn : false
 		})
+		localStorage.clear()
 	}
 
 	updateUser = (first, last, img, info) => {
@@ -80,7 +84,9 @@ class App extends React.Component {
 					{
 						(this.state.loggedIn) ? <Route path='/' exact component={RoomList} /> : <Route path='/' exact component={Home} />
 					}
-					<Route path='/Create' component={NewUser} />
+					{
+						(this.state.loggedIn) ? <Redirect to='/'/> : <Route path='/Create' component={NewUser} />
+					}
 					{
 						(this.state.loggedIn) ?
 								<div>
@@ -94,7 +100,7 @@ class App extends React.Component {
 									<Route path='/UpdateRoom' component={UpdateRoom} />
 								</div>
 						:
-							<Redirect to="/"/>
+							<Redirect to='/'/>
 					}
 				</div>
 			</Router>

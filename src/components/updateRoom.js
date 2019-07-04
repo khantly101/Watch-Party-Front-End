@@ -42,26 +42,26 @@ class Home extends React.Component {
 
 	render () {
 		return (
-			<div className="container-fluid">
+			<div className='container-fluid'>
 				<div>
 					<form onSubmit={this.handleSubmit}>
-						<label htmlFor="roomName"></label>
-						<input type="text" id="roomName" name="roomName" onChange={this.handleChange} value={this.state.roomName} placeholder="Room Name" />
+						<label htmlFor='roomName'></label>
+						<input type='text' id='roomName' name='roomName' onChange={this.handleChange} value={this.state.roomName} placeholder='Room Name' />
 						<br />
 						<br />
-						<label htmlFor="nameSpace"></label>
-						<input type="text" id="nameSpace" name="nameSpace" onChange={this.handleChange} value={this.state.nameSpace} placeholder="Name Space" />
+						<label htmlFor='nameSpace'></label>
+						<input type='text' id='nameSpace' name='nameSpace' onChange={this.handleChange} value={this.state.nameSpace} placeholder='Name Space' />
 						<br />
 						<br />
-						<label htmlFor="description"></label>
-						<input type="test" id="description" name="description" onChange={this.handleChange} value={this.state.description} placeholder="Description" />
+						<label htmlFor='description'></label>
+						<input type='test' id='description' name='description' onChange={this.handleChange} value={this.state.description} placeholder='Description' />
 						<br />
 						<br />
-						<input className="btn btn-primary" type="submit" value="Update"/>
+						<input className='btn btn-primary' type='submit' value='Update'/>
 					</form>
 				</div>
 				{
-					this.state.redirect ?  <Redirect to="/"/> : null
+					this.state.redirect ?  <Redirect to='/'/> : null
 				}
 			</div>
 		)

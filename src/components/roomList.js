@@ -1,5 +1,5 @@
 import React 		from 'react'
-import { Link } 	from "react-router-dom"
+import { Link } 	from 'react-router-dom'
 
 let baseURL = 'http://localhost:3003' 
 
@@ -26,7 +26,6 @@ class RoomList extends React.Component {
 		fetch(baseURL + '/partyroom/' + id, {
 			method: 'DELETE',
 		}).then (res => {
-			console.log(res)
 			const findIndex = this.state.rooms.findIndex(room => room._id === id)
 			const copyRoom = [...this.state.rooms]
 			copyRoom.splice(findIndex, 1)
@@ -40,12 +39,9 @@ class RoomList extends React.Component {
 
 	render () {
 		return (
-			<div className="container-fluid">
+			<div className='container-fluid'>
 				<table> 
 					<tbody>
-						{
-							console.log(this.state.rooms)
-						}
 						{
 							this.state.rooms.map((room, index) => {
 								return (

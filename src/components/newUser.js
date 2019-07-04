@@ -56,29 +56,21 @@ class NewUser extends React.Component {
 
 	render () {
 		return (
-			<div className="container-fluid">
-				<div className="container home">
+			<div className='container-fluid'>
+				<div className='container bg-white rounded'>
 					<br />
 					<h1>Create Account</h1>
-					<br />
 					<form onSubmit={this.handleSubmit}>
-						<label htmlFor="userName"></label>
-						<input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} placeholder="User Name" required/>
+						<label htmlFor='userName'></label>
+						<input className='form-control' type='text' id='userName' name='userName' onChange={this.handleChange} value={this.state.userName} placeholder='User Name' required/>
+						<label htmlFor='password'></label>
+						<input className='form-control' type='password' id='password' name='password' onChange={this.handleChange} value={this.state.password} placeholder='Password' required/>
+						<label htmlFor='firstName'></label>
+						<input className='form-control' type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} placeholder='First Name' required/>
+						<label htmlFor='lastName'></label>
+						<input className='form-control' type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} placeholder='Last Name' required/>
 						<br />
-						<br />
-						<label htmlFor="password"></label>
-						<input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" required/>
-						<br />
-						<br />
-						<label htmlFor="firstName"></label>
-						<input type="text" id="firstName" name="firstName" onChange={this.handleChange} value={this.state.firstName} placeholder="First Name" required/>
-						<br />
-						<br />
-						<label htmlFor="lastName"></label>
-						<input type="text" id="lastName" name="lastName" onChange={this.handleChange} value={this.state.lastName} placeholder="Last Name" required/>
-						<br />
-						<br />
-						<input className="btn btn-primary" type="submit" value="New User"/>
+						<input className='btn btn-primary' type='submit' value='New User'/>
 					</form>
 					<br />
 				</div>
