@@ -4,6 +4,7 @@ import io				from 'socket.io-client'
 
 class ChatRoom extends React.Component {
 	state = {
+		socket: io('http://localhost:3003'),
 		partyRooms:[],
 		partyRoomIndex: '',
 		userName: 'User Name Test',
@@ -12,9 +13,7 @@ class ChatRoom extends React.Component {
 		playerScript: 'https://cdn.jwplayer.com/libraries/7q9W8HVG.js',
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
 		playerId: '',
-		clients: [],
-		clientId: '',
-		socket: io('http://localhost:3003')
+		clients: []
 	}
 
 	componentWillMount() {
@@ -33,11 +32,10 @@ class ChatRoom extends React.Component {
 		})
 	}
 
-
 	checkRoute() {
 		if (!this.props.location.state) {
 			window.location.href = '/'
-		} 
+		}
 	}
 
 	socketConnect = (theRoom, roomIndex, userName, pic, socket) => {
@@ -51,9 +49,10 @@ class ChatRoom extends React.Component {
 
 				// Connected, let's sign-up for to receive messages for this room
 				socket.emit('room', theRoom, roomIndex, userName, pic, socket.id)
-				console.log(`current clients`)
-				console.log(theRoom.clients)
 			})
+
+		}
+		deleteClient = () => {
 
 		}
 
@@ -61,13 +60,22 @@ class ChatRoom extends React.Component {
 
 		this.socketConnect(this.state.partyRooms[this.state.partyRoomIndex], this.state.partyRoomIndex, this.state.userName, this.state.pic,this.state.socket)
 
-		this.state.socket.on(`addToList`, (msg, partyRoom, roomIndex, userName, pic, id) => {
+		this.state.socket.on(`addToList`, (msg, partyRoom, roomIndex, activeClients) => {
 
-			let partyRooms = [...this.state.partyRooms]
-			partyRooms[roomIndex].clients = partyRoom.clients
+			console.log(`newClient`)
+			console.log(activeClients)
+
 			this.setState({
-				partyRooms:[...this.state.partyRooms]
+				clients: activeClients
 			})
+		})
+		this.state.socket.on(`deleteFromList`, (msg,clientId) => {
+			console.log(clientId + ' ' + msg)
+			let deleteClient = [...this.state.clients]
+			deleteClient.filter((theClient) => {
+				return theClient.sockId === clientId
+			})
+			alert(msg)
 		})
 
 		//Listening to responses sent from server
@@ -99,13 +107,10 @@ class ChatRoom extends React.Component {
 	 		// console.log('Triggering ' + playerId)
 	 		window.jwplayer().stop()
  		})
-
- 		this.state.socket.on(`delete`, (msg,clientId) => {
-	 		// console.log(clientId + ' ' + msg)
-
-		})
 	}
+
 	componentWillUnmount() {
+
 		this.state.socket.close()
 	}
 
@@ -147,11 +152,11 @@ class ChatRoom extends React.Component {
 				/>
 				<div>
 
-				{this.state.partyRooms[this.state.partyRoomIndex].clients.map((theClient, index) => {
+				{this.state.clients.map((theClient, index) => {
 					return (
 						<div key={index}>
 						<h1>This is current User List in Chat Room </h1>
-						imagePlaceholder: {theClient.pic} username: {theClient.userName} socketId: {theClient.sockId}
+						imagePlaceholder: {theClient.pic} username: {theClient.userName} socketId: {theClient.sockId} clientSocketIndex: {index}
 
 						</div>
 					)
