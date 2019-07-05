@@ -171,26 +171,17 @@ class ChatRoom extends React.Component {
 						<div className='chatBox'>
 							{this.state.partyRooms[this.state.partyRoomIndex].messages.map((theMessage, index) => {
 								return (
-									<div key={index}>
-										<div className='row'>
-											<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' /> 
-											<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
-										</div> 
-										<hr className="line" />
-										<p>{theMessage.message}</p>
-									</div>
-								)
-							})}
-
-				
-				<div>
-
-				{this.state.clients.map((theClient, index) => {
-					return (
-						<div key={index}>
-						<h1>This is current User List in Chat Room </h1>
-						imagePlaceholder: {theClient.pic} username: {theClient.userName} socketId: {theClient.sockId} clientSocketIndex: {index}
-
+										<div key={index}>
+											<div className='row'>
+												<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' /> 
+												<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
+											</div> 
+											<hr className="line" />
+											<p>{theMessage.message}</p>
+										</div>
+									)
+								})
+							}
 						</div>
 						<div>
 							<form onSubmit={this.handleSubmit} className='row'>
@@ -198,6 +189,16 @@ class ChatRoom extends React.Component {
 								<input type='submit' className='col-3' value='SEND'/>
 							</form>
 						</div>
+					</div>
+					<div>
+						{this.state.clients.map((theClient, index) => {
+							return (
+								<div key={index}>
+									<h1>This is current User List in Chat Room </h1>
+									imagePlaceholder: {theClient.pic} username: {theClient.userName} socketId: {theClient.sockId} clientSocketIndex: {index}
+								</div>
+							)
+						})}
 					</div>
 				</div>
 			</React.Fragment>
