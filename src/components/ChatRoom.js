@@ -1,6 +1,6 @@
-import React         from 'react'
-import ReactJWPlayer from 'react-jw-player'
-import io	           from 'socket.io-client'
+import React         	from 'react'
+import ReactJWPlayer 	from 'react-jw-player'
+import io				from 'socket.io-client'
 
 const socket = io('http://localhost:3003')
 
@@ -19,6 +19,7 @@ class ChatRoom extends React.Component {
 	}
 
 	componentWillMount() {
+		this.checkRoute()
 
 		const { rooms } = this.props.location.state
 		const { index } = this.props.location.state
@@ -30,6 +31,12 @@ class ChatRoom extends React.Component {
 			console.log(this.state.partyRooms)
 			console.log(this.state.partyRoomIndex)
 		})
+	}
+
+	checkRoute() {
+		if (!this.props.location.state) {
+			window.location.href = '/'
+		} 
 	}
 
 	socketConnect = (theRoom,userName,pic) => {

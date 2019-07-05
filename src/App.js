@@ -26,7 +26,7 @@ class App extends React.Component {
 		partyrooms: savedLogin.partyrooms || [],
 		img: savedLogin.img || '',
 		info: savedLogin.info || '',
-		loggedIn : savedLogin.loggedIn || false
+		loggedIn: savedLogin.loggedIn || false,
 	}
 
 	componentDidMount() {
@@ -88,7 +88,7 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div>
-					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser}/>
+					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser} fillRoom={this.fillRoom}/>
 					<br />
 					{
 						(this.state.loggedIn) ? <Route path='/' exact component={RoomList} /> : <Route path='/' exact component={Home} />
@@ -109,7 +109,9 @@ class App extends React.Component {
 									<Route path='/NewRoom' render={() => (
 										<NewRoom state={this.state} /> )}
 									/>
-									<Route path='/UpdateRoom' component={UpdateRoom} />
+									<Route path='/UpdateRoom' render={() => (
+										<UpdateRoom updateRoom={this.updateRoom} /> )}
+									/>
 								</div>
 						:
 							<Redirect to='/'/>

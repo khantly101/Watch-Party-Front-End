@@ -35,7 +35,7 @@ class Header extends React.Component {
 							</div>
 						) : (
 							<div className='col-2 row align-self-center'>
-								<Login changeUser={this.props.changeUser}/>
+								<Login changeUser={this.props.changeUser} fillRoom={this.props.fillRoom}/>
 							</div>
 						)
 					}
