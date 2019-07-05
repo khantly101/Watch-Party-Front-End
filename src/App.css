@@ -19,3 +19,28 @@ body {
 	width: 150px;
 	height: 150px;
 }
+
+.chatPic {
+	height: 25px;
+	border-radius: 16px;
+	margin-left: 5px;
+	margin-top: 2px;
+}
+
+.chatBox {
+	width: 100%;
+	height: 95.5%;
+	text-overflow: wrap;
+	word-wrap: break-word;
+}
+
+.chatText {
+	margin: 2px;
+	text-overflow: wrap;
+	word-wrap: break-word;
+}
+
+.line {
+	height: 1px;
+	margin: 0;
+}

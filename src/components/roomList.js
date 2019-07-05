@@ -40,11 +40,11 @@ class RoomList extends React.Component {
 	render () {
 		return (
 			<div className='container-fluid'>
-				<div class="jumbotron bg-white">
-					<h1 class="display-4">Browse Party Rooms</h1>
-					<p class="lead"></p>
-					<p class="lead"></p>
-					<hr class="my-4" />
+				<div className="jumbotron bg-white">
+					<h1 className="display-4">Browse Party Rooms</h1>
+					<p className="lead"></p>
+					<p className="lead"></p>
+					<hr className="my-4" />
 					<p></p>
 				</div>
 
