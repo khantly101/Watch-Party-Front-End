@@ -9,13 +9,13 @@ class Profile extends React.Component {
 				<div className='jumbotron bg-white'>
 					<div className='float-right'>
 						{
-							this.props.state.img ? <img width='150px' className='img-thumbnail rounded' src={this.props.state.img} alt='Missing' /> : <img width='150px' className='img-thumbnail rounded' src={Default} alt='Missing' />
+							this.props.state.img ? <img className='img-thumbnail rounded profilePic' src={this.props.state.img} alt='Missing' /> : <img className='img-thumbnail rounded profilePic' src={Default} alt='Missing' />
 						}
 					</div>
 					<br />
 					<h1 className='display-4'>Hello, {this.props.state.firstName} {this.props.state.lastName}</h1>
 					<p className='display-12'>UserName: {this.props.state.currentUser}</p>
-					<Link to='/EditProfile'><button className='btn btn-primary'>Edit Profile</button></Link>
+					<Link to='/EditProfile'><button className='btn btn-secondary'>Edit Profile</button></Link>
 					<br />
 					<hr />
 					<p>About Me:</p>

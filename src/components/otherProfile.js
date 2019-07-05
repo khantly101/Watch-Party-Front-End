@@ -1,4 +1,5 @@
 import React 		from 'react'
+import Default 		from './Images/default.svg'
 
 class OtherProfile extends React.Component {
 	render () {
@@ -7,16 +8,16 @@ class OtherProfile extends React.Component {
 				<div className='jumbotron bg-white'>
 					<div className='float-right'>
 						{
-							this.props.state.img ? <img width='150px' className='img-thumbnail rounded' src={this.props.state.img} alt='Missing' /> : <img width='150px' className='img-thumbnail rounded' src={Default} alt='Missing' />
+							this.props.location.state.user.img ? <img className='img-thumbnail rounded profilePic' src={this.props.location.state.user.img} alt='Missing' /> : <img className='img-thumbnail rounded profilePic' src={Default} alt='Missing' />
 						}
 					</div>
 					<br />
-					<h1 className='display-4'>Hello, {this.props.state.firstName} {this.props.state.lastName}</h1>
-					<p className='display-12'>UserName: {this.props.state.currentUser}</p>
+					<h1 className='display-4'>Hello, {this.props.location.state.user.firstName} {this.props.location.state.user.lastName}</h1>
+					<p className='display-12'>UserName: {this.props.location.state.user.userName}</p>
 					<br />
 					<hr />
 					<p>About Me:</p>
-					<p>{this.props.state.info}</p>
+					<p>{this.props.location.state.user.info}</p>
 				</div>
 				<br />
 				<div>
