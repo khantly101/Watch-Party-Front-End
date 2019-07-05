@@ -74,13 +74,19 @@ class Login extends React.Component {
 	render () {
 		return (
 			<div className='dropdown offset-6 col-6 justify-content-center'>
-				<button className='btn btn-primary dropdown-toggle' id='dropdownMenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Log In</button>
+				<button className='btn btn-secondary dropdown-toggle' id='dropdownMenu' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Log In</button>
 				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenu'>
 					<form className='px-4 py-3' onSubmit={this.handleSubmit}>
+						{
+							this.state.wrongUser ? <small className='text-danger'>Wrong UserName</small> : null
+						}
 						<div className='form-group'>
 							<label htmlFor='userName'></label>
 							<input type='text' id='userName' name='userName' onChange={this.handleChange} value={this.state.userName} placeholder='User Name' required/>
 						</div>
+						{
+							this.state.wrongPass ? <small className='text-danger'>Wrong Password</small> : null
+						}
 						<div className='form-group'>
 							<label htmlFor='password'></label>
 							<input type='password' id='password' name='password' onChange={this.handleChange} value={this.state.password} placeholder='Password' required/>

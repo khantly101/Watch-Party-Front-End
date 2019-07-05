@@ -5,10 +5,29 @@ let baseURL = 'http://localhost:3003'
 
 class UpdateRoom extends React.Component {
 	state = {
-		roomName: this.props.location.state.room.roomName,
-		nameSpace: this.props.location.state.room.nameSpace,
-		description: this.props.location.state.room.description,
+		roomName: '',
+		nameSpace: '',
+		description: '',
 		redirect: false
+	}
+
+	componentWillMount() {
+		this.checkRoute()
+		this.addState()
+	}
+
+	checkRoute = () => {
+		if (!this.props.location.state) {
+			window.location.href = '/'
+		} 
+	}
+
+	addState () {
+		this.setState({
+			roomName: this.props.location.state.room.roomName,
+			nameSpace: this.props.location.state.room.nameSpace,
+			description: this.props.location.state.room.description
+		})
 	}
 
 	handleChange = (event) => {

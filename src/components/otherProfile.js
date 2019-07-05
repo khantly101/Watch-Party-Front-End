@@ -1,29 +1,26 @@
 import React 		from 'react'
-import { Link } 	from 'react-router-dom'
 import Default 		from './Images/default.svg'
 
-class Profile extends React.Component {
+class OtherProfile extends React.Component {
 	render () {
 		return (
 			<div className='container-fluid'>
 				<div className='jumbotron bg-white'>
 					<div className='float-right'>
 						{
-							this.props.state.img ? <img className='img-thumbnail rounded profilePic' src={this.props.state.img} alt='Missing' /> : <img className='img-thumbnail rounded profilePic' src={Default} alt='Missing' />
+							this.props.location.state.user.img ? <img className='img-thumbnail rounded profilePic' src={this.props.location.state.user.img} alt='Missing' /> : <img className='img-thumbnail rounded profilePic' src={Default} alt='Missing' />
 						}
 					</div>
 					<br />
-					<h1 className='display-4'>Hello, {this.props.state.firstName} {this.props.state.lastName}</h1>
-					<p className='display-12'>UserName: {this.props.state.currentUser}</p>
-					<Link to='/EditProfile'><button className='btn btn-secondary'>Edit Profile</button></Link>
+					<h1 className='display-4'>Hello, {this.props.location.state.user.firstName} {this.props.location.state.user.lastName}</h1>
+					<p className='display-12'>UserName: {this.props.location.state.user.userName}</p>
 					<br />
 					<hr />
 					<p>About Me:</p>
-					<p>{this.props.state.info}</p>
+					<p>{this.props.location.state.user.info}</p>
 				</div>
 				<br />
 				<div>
-					<Link to='/NewRoom'><button className='btn btn-primary btn-lg btn-block'>Create Party Room</button></Link>
 					<div className='table-responsive'>
 						<table className='table table-light table-hover'>
 							<thead className='thead-dark'>
@@ -44,5 +41,4 @@ class Profile extends React.Component {
 	}
 }
 
-export default Profile
-
+export default OtherProfile

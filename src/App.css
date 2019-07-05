@@ -9,3 +9,13 @@ body {
 .buttonHead {
 	width: 125px;
 }
+
+.userPic {
+	width: 300px;
+	height: 300px;
+}
+
+.profilePic {
+	width: 150px;
+	height: 150px;
+}
