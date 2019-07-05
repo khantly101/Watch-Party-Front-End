@@ -22,29 +22,19 @@ class RoomList extends React.Component {
 		}).catch (error => console.error({'Error': error}))
 	}
 
-	deleteRoom = (id) => {
-		fetch(baseURL + '/partyroom/' + id, {
-			method: 'DELETE',
-		}).then (res => {
-			const findIndex = this.state.rooms.findIndex(room => room._id === id)
-			const copyRoom = [...this.state.rooms]
-			copyRoom.splice(findIndex, 1)
-			this.setState({rooms: copyRoom})
-		}).catch (error => console.error({'Error': error}))
-	}
-
 	componentDidMount () {
 		this.findRooms()
+		this.props.fillRoom()
 	}
 
 	render () {
 		return (
 			<div className='container-fluid'>
-				<div class="jumbotron bg-white">
-					<h1 class="display-4">Browse Party Rooms</h1>
-					<p class="lead"></p>
-					<p class="lead"></p>
-					<hr class="my-4" />
+				<div className="jumbotron bg-white">
+					<h1 className="display-4">Browse Party Rooms</h1>
+					<p className="lead"></p>
+					<p className="lead"></p>
+					<hr className="my-4" />
 					<p></p>
 				</div>
 
@@ -56,8 +46,6 @@ class RoomList extends React.Component {
 								<th scope="col">Room Name</th>
 								<th scope="col">Description</th>
 								<th scope="col">Visit</th>
-								<th scope="col">Delete</th>
-								<th scope="col">Edit</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -76,13 +64,6 @@ class RoomList extends React.Component {
 													rooms: this.state.rooms
 												}
 											}}>Link</Link></th>
-											<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
-											<th><Link to={{ 
-												pathname: '/UpdateRoom',
-												state: {
-													room: room
-												}
-											}}>Update</Link></th>
 										</tr>
 									)
 								})

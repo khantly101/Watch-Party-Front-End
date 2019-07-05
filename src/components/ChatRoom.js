@@ -2,13 +2,15 @@ import React         	from 'react'
 import ReactJWPlayer 	from 'react-jw-player'
 import io				from 'socket.io-client'
 
+let savedLogin = localStorage.getItem('Data') ? JSON.parse(localStorage.getItem('Data')) : {}
+
 class ChatRoom extends React.Component {
 	state = {
 		socket: io('http://localhost:3003'),
 		partyRooms:[],
 		partyRoomIndex: '',
-		userName: 'User Name Test',
-		pic: 'Pic Test',
+		userName: savedLogin.currentUser,
+		pic: savedLogin.img,
 		chatMessage: '',
 		playerScript: 'https://cdn.jwplayer.com/libraries/7q9W8HVG.js',
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
@@ -153,15 +155,34 @@ class ChatRoom extends React.Component {
 
 		return (
 			<React.Fragment>
+				<div className='row chatRow justify-content-around'>
+				 	<div className='col-8'>
+						<ReactJWPlayer
+							playerId= { this.state.playerId }
+							playerScript= {this.state.playerScript}
+							file= {this.state.file}
+						/>
 
-				<button onClick={ () => { this.sendPlay() } }>Play Video</button>
-			 	<button onClick={ () => { this.sendStop() } }>Stop Video</button>
+						<button onClick={ () => { this.sendPlay() } }>Play Video</button>
+						<button onClick={ () => { this.sendStop() } }>Stop Video</button>
 
-				<ReactJWPlayer
-					playerId= { this.state.playerId }
-					playerScript= {this.state.playerScript}
-					file= {this.state.file}
-				/>
+					</div>
+					<div className='col-3 bg-info'>
+						<div className='chatBox'>
+							{this.state.partyRooms[this.state.partyRoomIndex].messages.map((theMessage, index) => {
+								return (
+									<div key={index}>
+										<div className='row'>
+											<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' /> 
+											<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
+										</div> 
+										<hr className="line" />
+										<p>{theMessage.message}</p>
+									</div>
+								)
+							})}
+
+				
 				<div>
 
 				{this.state.clients.map((theClient, index) => {
@@ -171,25 +192,14 @@ class ChatRoom extends React.Component {
 						imagePlaceholder: {theClient.pic} username: {theClient.userName} socketId: {theClient.sockId} clientSocketIndex: {index}
 
 						</div>
-					)
-				})}
-
-
-				{this.state.partyRooms[this.state.partyRoomIndex].messages.map((theMessage, index) => {
-					return (
-						<div key={index}>
-						<h1>This is current message board for chat room </h1>
-						imagePlaceholder: {theMessage.pic} username: {theMessage.userName} message: {theMessage.message}
-
+						<div>
+							<form onSubmit={this.handleSubmit} className='row'>
+								<input type='text' className='form-control col-9' id='chatMessage' name='chatMessage' onChange={this.handleChange} value={this.state.chatMessage} placeholder='Type Message'/>
+								<input type='submit' className='col-3' value='SEND'/>
+							</form>
 						</div>
-					)
-				})}
-
+					</div>
 				</div>
-				<form onSubmit={this.handleSubmit}>
-					<input type='text' id='chatMessage' name='chatMessage' onChange={this.handleChange} value={this.state.chatMessage} placeholder='Type Message'/>
-					<input type='submit' value='SEND'/>
-				</form>
 			</React.Fragment>
 		)
 	}

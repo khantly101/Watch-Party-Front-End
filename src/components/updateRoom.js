@@ -49,7 +49,6 @@ class UpdateRoom extends React.Component {
 			}
 		}).then (res => res.json())
 		.then (resJson => {
-			console.log(resJson)
 			this.setState({
 				roomName: '',
 				nameSpace: '',
@@ -80,7 +79,7 @@ class UpdateRoom extends React.Component {
 					<br />
 				</div>
 				{
-					this.state.redirect ?  <Redirect to='/'/> : null
+					this.state.redirect ?  <Redirect to='/Profile'/> : null
 				}
 			</div>
 		)

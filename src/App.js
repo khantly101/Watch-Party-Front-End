@@ -16,8 +16,8 @@ import OtherProfile							from './components/otherProfile.js'
 
 import './App.css'
 
-let savedLogin = localStorage.getItem('Data') ? JSON.parse(localStorage.getItem('Data')) : {}
-console.log(savedLogin)
+let baseURL 	= 'http://localhost:3003' 
+let savedLogin 	= localStorage.getItem('Data') ? JSON.parse(localStorage.getItem('Data')) : {}
 
 class App extends React.Component {
 	state = {
@@ -31,31 +31,26 @@ class App extends React.Component {
 		loggedIn: savedLogin.loggedIn || false,
 	}
 
-	componentDidMount() {
-		console.log(this.state)
+	componentWillMount() {
+		if (this.state.loggedIn) {
+			this.fillRoom()
+		}
 	}
 
-	updateRoom = (updated ,id) => {
-		const findIndex = this.state.partyrooms.findIndex(room => room._id === id)
-		const copyRoom = [...this.state.partyrooms]
-		copyRoom[findIndex] = updated
-		this.setState({partyrooms: copyRoom})
+	fillRoom = () => {
+		fetch(baseURL + '/member/' + this.state.id + '/room', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then (res => res.json())
+		.then (resJson => {
+			this.setState({
+				partyrooms: resJson
+			})
+		}).catch (error => console.error({'Error': error}))
 		localStorage.setItem('Data', JSON.stringify(this.state))
-	}
-
-	deleteRoom = (id) => {
-		const findIndex = this.state.partyrooms.findIndex(room => room._id === id)
-		const copyRoom = [...this.state.partyrooms]
-		copyRoom.splice(findIndex, 1)
-		this.setState({partyrooms: copyRoom})
-		localStorage.setItem('Data', JSON.stringify(this.state))
-	}
-
-	createRoom = (created) => {
-		const copyRoom = [...this.state.partyrooms]
-		copyRoom.push(created)
-		this.setState({partyrooms: copyRoom})
-		localStorage.setItem('Data', JSON.stringify(this.state))
+		savedLogin = this.state
 	}
 
 	changeUser = (user) => {
@@ -81,7 +76,7 @@ class App extends React.Component {
 		}
 
 		localStorage.setItem('Data', JSON.stringify(this.state))
-		console.log(this.state)
+		savedLogin = this.state
 	}
 
 	logout = () => {
@@ -107,6 +102,7 @@ class App extends React.Component {
 		})
 
 		localStorage.setItem('Data', JSON.stringify(this.state))
+		savedLogin = this.state
 	}
 
 	render () {
@@ -116,7 +112,7 @@ class App extends React.Component {
 					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser}/>
 					<br />
 					{
-						(this.state.loggedIn) ? <Route path='/' exact component={RoomList} /> : <Route path='/' exact component={Home} />
+						(this.state.loggedIn) ? <Route path='/' exact render={() => (<RoomList fillRoom={this.fillRoom}/>)} /> : <Route path='/' exact component={Home} />
 					}
 					{
 						(this.state.loggedIn) ? <Redirect to='/'/> : <Route path='/Create' component={NewUser} />
@@ -125,7 +121,7 @@ class App extends React.Component {
 						(this.state.loggedIn) ?
 								<div>
 									<Route path='/Profile' render={() => (
-										<Profile state={this.state} updateRoom={this.updateRoom}/> )}
+										<Profile state={this.state} fillRoom={this.fillRoom} /> )}
 									/>
 									<Route path='/EditProfile' render={() => (
 										<EditUser state={this.state} updateUser={this.updateUser} /> )}
