@@ -16,9 +16,9 @@ class UpdateRoom extends React.Component {
 		this.addState()
 	}
 
-	checkRoute () {
-		if (!this.props.location) {
-			window.location.href = '/Profile'
+	checkRoute = () => {
+		if (!this.props.location.state) {
+			window.location.href = '/'
 		} 
 	}
 
@@ -50,7 +50,6 @@ class UpdateRoom extends React.Component {
 		}).then (res => res.json())
 		.then (resJson => {
 			console.log(resJson)
-			this.props.updateRoom(resJson)
 			this.setState({
 				roomName: '',
 				nameSpace: '',

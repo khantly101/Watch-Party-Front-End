@@ -13,18 +13,6 @@ class Login extends React.Component {
 
 	_isMounted = false
 
-	// roomInfo = (id) => {
-	// 	fetch(baseURL + '/member/' + id + '/room', {
-	// 		method: 'GET',
-	// 		headers: {
-	// 			'Content-Type': 'application/json'
-	// 		}
-	// 	}).then (res => res.json())
-	// 	.then (resJson => {
-	// 		console.log(resJson)	
-	// 	}).catch (error => console.error({'Error': error}))
-	// }
-
 	handleChange = (event) => {
 		this.setState({ [event.target.id]: event.target.value})
 	}

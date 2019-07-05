@@ -11,6 +11,8 @@ import NewRoom								from './components/newRoom.js'
 import RoomList								from './components/roomList.js'
 import UpdateRoom							from './components/updateRoom.js'
 import EditUser								from './components/editUser.js'
+import OtherUserList						from './components/otherUserList.js'
+import OtherProfile							from './components/otherProfile.js'
 
 import './App.css'
 
@@ -31,6 +33,29 @@ class App extends React.Component {
 
 	componentDidMount() {
 		console.log(this.state)
+	}
+
+	updateRoom = (updated ,id) => {
+		const findIndex = this.state.partyrooms.findIndex(room => room._id === id)
+		const copyRoom = [...this.state.partyrooms]
+		copyRoom[findIndex] = updated
+		this.setState({partyrooms: copyRoom})
+		localStorage.setItem('Data', JSON.stringify(this.state))
+	}
+
+	deleteRoom = (id) => {
+		const findIndex = this.state.partyrooms.findIndex(room => room._id === id)
+		const copyRoom = [...this.state.partyrooms]
+		copyRoom.splice(findIndex, 1)
+		this.setState({partyrooms: copyRoom})
+		localStorage.setItem('Data', JSON.stringify(this.state))
+	}
+
+	createRoom = (created) => {
+		const copyRoom = [...this.state.partyrooms]
+		copyRoom.push(created)
+		this.setState({partyrooms: copyRoom})
+		localStorage.setItem('Data', JSON.stringify(this.state))
 	}
 
 	changeUser = (user) => {
@@ -88,7 +113,7 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div>
-					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser} fillRoom={this.fillRoom}/>
+					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser}/>
 					<br />
 					{
 						(this.state.loggedIn) ? <Route path='/' exact component={RoomList} /> : <Route path='/' exact component={Home} />
@@ -100,7 +125,7 @@ class App extends React.Component {
 						(this.state.loggedIn) ?
 								<div>
 									<Route path='/Profile' render={() => (
-										<Profile state={this.state} /> )}
+										<Profile state={this.state} updateRoom={this.updateRoom}/> )}
 									/>
 									<Route path='/EditProfile' render={() => (
 										<EditUser state={this.state} updateUser={this.updateUser} /> )}
@@ -109,9 +134,9 @@ class App extends React.Component {
 									<Route path='/NewRoom' render={() => (
 										<NewRoom state={this.state} /> )}
 									/>
-									<Route path='/UpdateRoom' render={() => (
-										<UpdateRoom updateRoom={this.updateRoom} /> )}
-									/>
+									<Route path='/UpdateRoom' component={UpdateRoom} />
+									<Route path='/UserList' component={OtherUserList} />
+									<Route path='/UserProfile' component={OtherProfile} />
 								</div>
 						:
 							<Redirect to='/'/>
