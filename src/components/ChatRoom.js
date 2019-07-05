@@ -70,12 +70,24 @@ class ChatRoom extends React.Component {
 			})
 		})
 		this.state.socket.on(`deleteFromList`, (msg,clientId) => {
+
 			console.log(clientId + ' ' + msg)
 			let deleteClient = [...this.state.clients]
+
+			const index = deleteClient.map(theClient => theClient.sockId).indexOf(clientId)
+			deleteClient.splice(index, 1)
+
+			this.setState({
+				clients: [deleteClient]
+			}, () => {
+				console.log(`new clients array`)
+				console.log(this.state.clients)
+			})
 			deleteClient.filter((theClient) => {
 				return theClient.sockId === clientId
 			})
-			alert(msg)
+
+			alert(msg + 'at index' + index)
 		})
 
 		//Listening to responses sent from server
