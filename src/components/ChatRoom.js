@@ -138,7 +138,7 @@ class ChatRoom extends React.Component {
 
 		return (
 			<React.Fragment>
-				<div className='row'>
+				<div className='row chatRow justify-content-around'>
 				 	<div className='col-8'>
 						<ReactJWPlayer
 							playerId= { this.state.playerId }
@@ -156,7 +156,7 @@ class ChatRoom extends React.Component {
 								return (
 									<div key={index}>
 										<div className='row'>
-											<img className='img-thumbnail rounded chatPic col-1' src={theMessage.pic} alt='Missing' /> 
+											<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' /> 
 											<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
 										</div> 
 										<hr className="line" />

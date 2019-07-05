@@ -1,4 +1,5 @@
-import React 		from 'react'
+import React 			from 'react'
+import { Redirect }		from 'react-router'
 
 let baseURL = 'http://localhost:3003'
 
@@ -6,7 +7,8 @@ class NewRoom extends React.Component {
 	state = {
 		roomName: '',
 		nameSpace: '',
-		description: ''
+		description: '',
+		redirect: false
 	}
 
 	handleChange = (event) => {
@@ -29,11 +31,11 @@ class NewRoom extends React.Component {
 			}
 		}).then (res => res.json())
 		.then (resJson => {
-			console.log(resJson)
 			this.setState({
 				roomName: '',
 				nameSpace: '',
-				description: ''
+				description: '',
+				redirect: true
 			})
 		}).catch (error => console.error({'Error': error}))
 	}
@@ -56,6 +58,9 @@ class NewRoom extends React.Component {
 					</form>
 					<br />
 				</div>
+				{
+					this.state.redirect ?  <Redirect to='/'/> : null
+				}
 			</div>
 		)
 	}
