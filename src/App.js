@@ -121,7 +121,7 @@ class App extends React.Component {
 					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser}/>
 					<br />
 					{
-						(this.state.loggedIn) ? <Route path='/' exact render={() => (<RoomList fillRoom={this.fillRoom}/>)} /> : <Route path='/' exact component={Home} />
+						(this.state.loggedIn) ? <Route path='/' exact render={() => (<RoomList fillRoom={this.fillRoom} state={this.state}/>)} /> : <Route path='/' exact component={Home} />
 					}
 					{
 						(this.state.loggedIn) ? <Redirect to='/'/> : <Route path='/Create' component={NewUser} />
