@@ -1,7 +1,6 @@
 import React         	from 'react'
 import ReactJWPlayer 	from 'react-jw-player'
 import io				from 'socket.io-client'
-import Default 			from './Images/default.svg'
 
 class ChatRoom extends React.Component {
 	state = {
@@ -16,13 +15,13 @@ class ChatRoom extends React.Component {
 		playerImg: 'https://drive.google.com/file/d/1l64bgzH-Y9ztqQKrDkT716_zikQnhACg/view',
 		playerId: '',
 		clients: [],
-		webRtc: {
-			mediaStreamConstraints: {
-				video: true
-			},
-			video: {},
-			localStream: '',
-		}
+		// webRtc: {
+		// 	mediaStreamConstraints: {
+		// 		video: true
+		// 	},
+		// 	video: {},
+		// 	localStream: '',
+		// }
 	}
 
 	componentWillMount() {
@@ -66,17 +65,17 @@ class ChatRoom extends React.Component {
 
 		}
 
-		gotLocalMediaStream	= (mediaStream) => {
+	// 	gotLocalMediaStream	= (mediaStream) => {
 
-		const video = document.getElementById('rtc')
+	// 	const video = document.getElementById('rtc')
 
-		console.log(`video object`)
-		console.log(video)
+	// 	console.log(`video object`)
+	// 	console.log(video)
 
-		let localStream = mediaStream
-		video.srcObject = mediaStream
+	// 	let localStream = mediaStream
+	// 	video.srcObject = mediaStream
 
-	}
+	// }
 
 	handleLocalMediaStreamError = (error) => {
 		console.log('navigator.getUserMedia error: ', error)
@@ -146,22 +145,22 @@ class ChatRoom extends React.Component {
 	 		window.jwplayer().stop()
  		})
 
-		navigator.mediaDevices.getUserMedia(this.state.webRtc.mediaStreamConstraints)
-		.then(this.gotLocalMediaStream).catch(this.handleLocalMediaStreamError)
-		console.log(this.state.webRtc.video)
+		// navigator.mediaDevices.getUserMedia(this.state.webRtc.mediaStreamConstraints)
+		// .then(this.gotLocalMediaStream).catch(this.handleLocalMediaStreamError)
+		// console.log(this.state.webRtc.video)
 	}
 
 	componentWillUnmount() {
 
-		const video = document.getElementById('rtc')
-		let localStream = video.srcObject
-		let tracks = localStream.getTracks()
+		// const video = document.getElementById('rtc')
+		// let localStream = video.srcObject
+		// let tracks = localStream.getTracks()
 
-		tracks.forEach(function(track) {
-	 		track.stop()
- 		})
+		// tracks.forEach(function(track) {
+	 // 		track.stop()
+ 	// 	})
 
- 		video.srcObject = null
+ 	// 	video.srcObject = null
 
 		this.state.socket.close()
 	}
@@ -224,9 +223,7 @@ class ChatRoom extends React.Component {
 								return (
 									<div key={index}>
 										<div className='row'>
-											{
-												(theMessage.img) ? <img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='' /> : <img className='img-thumbnail rounded chatPic col-2' src={Default} alt='' />
-											}
+											<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='' />
 											<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
 										</div>
 										<hr className="line" />
@@ -244,7 +241,6 @@ class ChatRoom extends React.Component {
 					</div>
 				</div>
 				<br />
-				<video id='rtc' autoPlay width='100px'></video>
 				<br />
 				<div className='bg-info userBox'>
 					{this.state.clients.map((theClient, index) => {
@@ -269,3 +265,5 @@ class ChatRoom extends React.Component {
 }
 
 	export default ChatRoom
+
+	// <video id='rtc' autoPlay width='100px'></video>
