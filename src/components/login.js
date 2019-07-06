@@ -94,7 +94,7 @@ class Login extends React.Component {
 						<input className='btn btn-primary' type='submit' value='Sign In'/>
 					</form>
 					<div className='dropdown-divider' />
-					<Link to='/Create'><div className='dropdown-item'>
+					<Link to='/Watch-Party-Front-End/Create'><div className='dropdown-item'>
 						New around here? Sign up!
 					</div></Link>
 				</div>

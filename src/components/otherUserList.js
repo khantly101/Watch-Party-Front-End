@@ -46,7 +46,7 @@ class OtherUserList extends React.Component {
 						return (
 							<div className='card' width='18rem' key={index}>
 							<Link to={{ 
-									pathname: '/UserProfile',
+									pathname: '/Watch-Party-Front-End/UserProfile',
 									state: {
 										user: user
 									}
@@ -64,9 +64,6 @@ class OtherUserList extends React.Component {
 						)
 					})
 				}
-					
-					<Link to='/'> </Link>
-
 			</div>
 		)
 	}
