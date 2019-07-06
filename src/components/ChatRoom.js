@@ -16,7 +16,14 @@ class ChatRoom extends React.Component {
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
 		playerImg: 'https://drive.google.com/file/d/1l64bgzH-Y9ztqQKrDkT716_zikQnhACg/view',
 		playerId: '',
-		clients: []
+		clients: [],
+		webRtc: {
+			mediaStreamConstraints: {
+				video: true
+			},
+			video: {},
+			localStream: '',
+		}
 	}
 
 	componentWillMount() {
@@ -59,9 +66,22 @@ class ChatRoom extends React.Component {
 			})
 
 		}
-		deleteClient = () => {
 
-		}
+		gotLocalMediaStream	= (mediaStream) => {
+
+		const video = document.querySelector('video')
+
+		console.log(`video object`)
+		console.log(video)
+
+		let localStream = mediaStream
+		video.srcObject = mediaStream
+
+	}
+
+	handleLocalMediaStreamError = (error) => {
+		console.log('navigator.getUserMedia error: ', error)
+	}
 
 	componentDidMount() {
 
@@ -126,9 +146,23 @@ class ChatRoom extends React.Component {
 	 		// console.log('Triggering ' + playerId)
 	 		window.jwplayer().stop()
  		})
+
+		navigator.mediaDevices.getUserMedia(this.state.webRtc.mediaStreamConstraints)
+		.then(this.gotLocalMediaStream).catch(this.handleLocalMediaStreamError)
+		console.log(this.state.webRtc.video)
 	}
 
 	componentWillUnmount() {
+
+		const video = document.querySelector('video')
+		let localStream = video.srcObject
+		let tracks = localStream.getTracks()
+
+		tracks.forEach(function(track) {
+	 		track.stop()
+ 		})
+
+ 		video.srcObject = null
 
 		this.state.socket.close()
 	}
@@ -160,9 +194,33 @@ class ChatRoom extends React.Component {
 
 		return (
 			<React.Fragment>
+
 				<div>
 					<div className='container'>
 						<h1>{this.props.location.state.name}</h1>
+          </div>
+				<div className='row chatRow justify-content-around'>
+				 	<div className='col-8'>
+					<video autoPlay width='200px'></video>
+						<ReactJWPlayer
+							playerId= { this.state.playerId }
+							playerScript= {this.state.playerScript}
+							file= {
+											(this.state.partyRooms[this.state.partyRoomIndex].upload)?
+												this.state.partyRooms[this.state.partyRoomIndex].upload:
+												this.state.file
+										}
+						/>
+
+						{
+							(this.props.location.state.currentUser === this.props.location.state.creator)?
+							<button onClick={ () => { this.sendPlay() } }>Play Video</button>:null
+						}
+						{
+							(this.props.location.state.currentUser === this.props.location.state.creator)?
+							<button onClick={ () => { this.sendStop() } }>Stop Video</button>:null
+						}
+              
 					</div>
 					<div className='row chatRow justify-content-around'>
 					 	<div className='col-8'>
