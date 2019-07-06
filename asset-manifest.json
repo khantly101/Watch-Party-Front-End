@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/watch_party_fake/static/css/main.ba49ec77.chunk.css",
-    "main.js": "/watch_party_fake/static/js/main.d5e9856b.chunk.js",
-    "main.js.map": "/watch_party_fake/static/js/main.d5e9856b.chunk.js.map",
-    "runtime~main.js": "/watch_party_fake/static/js/runtime~main.1e77be6f.js",
-    "runtime~main.js.map": "/watch_party_fake/static/js/runtime~main.1e77be6f.js.map",
-    "static/js/2.65aa1cca.chunk.js": "/watch_party_fake/static/js/2.65aa1cca.chunk.js",
-    "static/js/2.65aa1cca.chunk.js.map": "/watch_party_fake/static/js/2.65aa1cca.chunk.js.map",
-    "index.html": "/watch_party_fake/index.html",
-    "precache-manifest.5f77bc334f2cebfca8cf7d7b981728dc.js": "/watch_party_fake/precache-manifest.5f77bc334f2cebfca8cf7d7b981728dc.js",
-    "service-worker.js": "/watch_party_fake/service-worker.js",
-    "static/css/main.ba49ec77.chunk.css.map": "/watch_party_fake/static/css/main.ba49ec77.chunk.css.map"
+    "main.css": "/Watch-Party-Front-End/static/css/main.dab7cdbd.chunk.css",
+    "main.js": "/Watch-Party-Front-End/static/js/main.fa70ac98.chunk.js",
+    "main.js.map": "/Watch-Party-Front-End/static/js/main.fa70ac98.chunk.js.map",
+    "runtime~main.js": "/Watch-Party-Front-End/static/js/runtime~main.6cdabadc.js",
+    "runtime~main.js.map": "/Watch-Party-Front-End/static/js/runtime~main.6cdabadc.js.map",
+    "static/css/2.510409cd.chunk.css": "/Watch-Party-Front-End/static/css/2.510409cd.chunk.css",
+    "static/js/2.a731a77b.chunk.js": "/Watch-Party-Front-End/static/js/2.a731a77b.chunk.js",
+    "static/js/2.a731a77b.chunk.js.map": "/Watch-Party-Front-End/static/js/2.a731a77b.chunk.js.map",
+    "index.html": "/Watch-Party-Front-End/index.html",
+    "precache-manifest.106ca3366965130ada9ab5b0ef8ccdb2.js": "/Watch-Party-Front-End/precache-manifest.106ca3366965130ada9ab5b0ef8ccdb2.js",
+    "service-worker.js": "/Watch-Party-Front-End/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/Watch-Party-Front-End/static/css/2.510409cd.chunk.css.map",
+    "static/css/main.dab7cdbd.chunk.css.map": "/Watch-Party-Front-End/static/css/main.dab7cdbd.chunk.css.map",
+    "static/media/WatchPartyLogoWhtV1.png": "/Watch-Party-Front-End/static/media/WatchPartyLogoWhtV1.a9687198.png",
+    "static/media/default.svg": "/Watch-Party-Front-End/static/media/default.173d1842.svg",
+    "static/media/home_page_1.jpg": "/Watch-Party-Front-End/static/media/home_page_1.747fe496.jpg"
   }
 }
