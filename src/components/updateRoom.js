@@ -136,7 +136,7 @@ class UpdateRoom extends React.Component {
 					<br />
 				</div>
 				{
-					this.state.redirect ?  <Redirect to='/Profile'/> : null
+					this.state.redirect ?  <Redirect to='/'/> : null
 				}
 			</div>
 		)
