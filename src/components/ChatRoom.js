@@ -199,7 +199,6 @@ class ChatRoom extends React.Component {
 				</div>
 				<div className='row chatRow justify-content-around'>
 					<div className='col-8'>
-					<video autoPlay width='100px'></video>
 						<ReactJWPlayer
 							playerId= { this.state.playerId }
 							playerScript= {this.state.playerScript}
@@ -244,6 +243,7 @@ class ChatRoom extends React.Component {
 					</div>
 				</div>
 				<br />
+				<video autoPlay width='100px'></video>
 				<br />
 				<div className='bg-info userBox'>
 					{this.state.clients.map((theClient, index) => {
@@ -251,7 +251,7 @@ class ChatRoom extends React.Component {
 							<div key={index} className='row innerBox'>
 								<div className='vLine'></div>
 								<div className='users'>
-									<img className='img-thumbnail rounded chatPic' src={theClient.pic} />
+									<img className='img-thumbnail rounded chatPic' src={theClient.pic} alt='' />
 									{
 										(this.props.location.state.currentUser === this.props.location.state.creator) ? <p className='text-danger'>{theClient.userName}</p> : <p>{theClient.userName}</p>
 									}

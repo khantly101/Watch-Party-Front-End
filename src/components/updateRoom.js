@@ -3,6 +3,8 @@ import { Redirect }		from 'react-router'
 
 let baseURL = 'http://localhost:3003' 
 
+
+
 class UpdateRoom extends React.Component {
 	state = {
 		roomName: '',
@@ -42,7 +44,6 @@ class UpdateRoom extends React.Component {
 			upload: event.target.files[0],
 			loaded: 0,
 		})
-		console.log(this.state)
 	}
 
 	handleSubmit = (event) => {
@@ -66,23 +67,20 @@ class UpdateRoom extends React.Component {
 				description: '',
 				redirect: true
 			})
-		}).catch (error => console.error({'Error': error}))
+		}).then (res => res.json()).catch (error => console.error({'Error': error}))
 	}
 
 	handleSubmitVid = (event) => {
+
+		const data = new FormData()
+		data.append('file', event.target.files[0])
+
 		event.preventDefault()
 		fetch(baseURL + '/upload/' + this.props.location.state.room._id, {
 			method: 'POST',
-			body: JSON.stringify(
-				{
-					file: this.state.upload,
-				}),
-		}).then (res => res.json())
-		.then (resJson => {
+			body: data
+		}).then (resJson => {
 			console.log(resJson)
-			this.setState({
-				upload: '',
-			})
 		}).catch (error => console.error({'Error': error}))
 	}
 
@@ -111,12 +109,12 @@ class UpdateRoom extends React.Component {
 					<br />
 					<h1>Update Video</h1>
 					<br />
-					<form onSubmit={this.handleSubmitVid}>
-						<input type="file" name="file" onChange={this.onUpload}/>
-						<br />
-						<br />
-						<input className='btn btn-primary' type='submit' value='Upload'/>
-					</form>
+						<form onSubmit={this.handleSubmitVid}>
+							<input type="file" name="file" onChange={this.onUpload}/>
+							<br />
+							<br />
+							<input className='btn btn-primary' type='submit' value='Upload'/>
+						</form>
 					<br />
 				</div>
 				{
