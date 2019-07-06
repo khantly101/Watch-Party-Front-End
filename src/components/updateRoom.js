@@ -37,9 +37,11 @@ class UpdateRoom extends React.Component {
 		this.setState({ [event.target.id]: event.target.value})
 	}
 
-	handleChangeVid = (event) => {
-		console.log(event)
-		this.setState({ [event.target.id]: event.target.value})
+	onUpload = (event) => {
+		this.setState({
+			upload: event.target.files[0],
+			loaded: 0,
+		})
 	}
 
 	handleSubmit = (event) => {
@@ -115,10 +117,9 @@ class UpdateRoom extends React.Component {
 					<h1>Update Video</h1>
 					<br />
 					<form onSubmit={this.handleSubmitVid}>
-						<div className="custom-file">
-							<input type="file" className="custom-file-input" id="upload" />
-							<label className="custom-file-label" htmlFor="upload" name='upload' onChange={this.handleChangeVid} value={this.state.upload} placeholder='Upload'>Choose file</label>
-						</div>
+						<input type="file" name="file" onChange={this.onUpload}/>
+						<br />
+						<br />
 						<input className='btn btn-primary' type='submit' value='Upload'/>
 					</form>
 					<br />
