@@ -2,7 +2,7 @@ import React 		from 'react'
 import { Link } 	from 'react-router-dom'
 import Default 		from './Images/default.svg'
 
-let baseURL = 'https://wparty.herokuapp.com/'
+let baseURL = 'https://wparty.herokuapp.com'
 
 class OtherUserList extends React.Component {
 	state = {

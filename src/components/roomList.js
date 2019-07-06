@@ -1,7 +1,7 @@
 import React 		from 'react'
 import { Link } 	from 'react-router-dom'
 
-let baseURL = 'https://wparty.herokuapp.com/'
+let baseURL = 'https://wparty.herokuapp.com'
 
 class RoomList extends React.Component {
 	state = {
