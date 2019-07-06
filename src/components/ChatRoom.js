@@ -168,8 +168,14 @@ class ChatRoom extends React.Component {
 										}
 						/>
 
-						<button onClick={ () => { this.sendPlay() } }>Play Video</button>
-						<button onClick={ () => { this.sendStop() } }>Stop Video</button>
+						{
+							(this.state.userName === this.state.partyRooms[this.state.partyRoomIndex].creator)?
+							null:<button onClick={ () => { this.sendPlay() } }>Play Video</button>
+						}
+						{
+							(this.state.userName === this.state.partyRooms[this.state.partyRoomIndex].creator)?
+							null:<button onClick={ () => { this.sendStop() } }>Stop Video</button>
+						}
 
 					</div>
 					<div className='col-3 bg-info'>
