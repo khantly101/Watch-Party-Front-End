@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "175d17ed2207479927106b0653e56303",
+    "revision": "44656401610d0bbc41d62e0d99908353",
     "url": "/Watch-Party-Front-End/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Watch-Party-Front-End/static/css/2.510409cd.chunk.css"
   },
   {
-    "revision": "4d0c10603528badb0ec3",
+    "revision": "ff7d9fe2dad568d033b6",
     "url": "/Watch-Party-Front-End/static/css/main.dab7cdbd.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Watch-Party-Front-End/static/js/2.a731a77b.chunk.js"
   },
   {
-    "revision": "4d0c10603528badb0ec3",
-    "url": "/Watch-Party-Front-End/static/js/main.fdb6cb92.chunk.js"
+    "revision": "ff7d9fe2dad568d033b6",
+    "url": "/Watch-Party-Front-End/static/js/main.a8049065.chunk.js"
   },
   {
     "revision": "8cdc253752287593a88a",
