@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.dab7cdbd.chunk.css",
-    "main.js": "/static/js/main.8900aef8.chunk.js",
-    "main.js.map": "/static/js/main.8900aef8.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/css/2.510409cd.chunk.css": "/static/css/2.510409cd.chunk.css",
-    "static/js/2.62fffe57.chunk.js": "/static/js/2.62fffe57.chunk.js",
-    "static/js/2.62fffe57.chunk.js.map": "/static/js/2.62fffe57.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.8138f2e51df3e1c7825144c7da80d654.js": "/precache-manifest.8138f2e51df3e1c7825144c7da80d654.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.510409cd.chunk.css.map": "/static/css/2.510409cd.chunk.css.map",
-    "static/css/main.dab7cdbd.chunk.css.map": "/static/css/main.dab7cdbd.chunk.css.map",
-    "static/media/WatchPartyLogoWhtV1.png": "/static/media/WatchPartyLogoWhtV1.a9687198.png",
-    "static/media/default.svg": "/static/media/default.173d1842.svg",
-    "static/media/home_page_1.jpg": "/static/media/home_page_1.747fe496.jpg"
+    "main.css": "/Watch-Party-Front-End/static/css/main.dab7cdbd.chunk.css",
+    "main.js": "/Watch-Party-Front-End/static/js/main.9d3622be.chunk.js",
+    "main.js.map": "/Watch-Party-Front-End/static/js/main.9d3622be.chunk.js.map",
+    "runtime~main.js": "/Watch-Party-Front-End/static/js/runtime~main.6cdabadc.js",
+    "runtime~main.js.map": "/Watch-Party-Front-End/static/js/runtime~main.6cdabadc.js.map",
+    "static/css/2.510409cd.chunk.css": "/Watch-Party-Front-End/static/css/2.510409cd.chunk.css",
+    "static/js/2.a731a77b.chunk.js": "/Watch-Party-Front-End/static/js/2.a731a77b.chunk.js",
+    "static/js/2.a731a77b.chunk.js.map": "/Watch-Party-Front-End/static/js/2.a731a77b.chunk.js.map",
+    "index.html": "/Watch-Party-Front-End/index.html",
+    "precache-manifest.0d107d469b8b3160c720976f16031aee.js": "/Watch-Party-Front-End/precache-manifest.0d107d469b8b3160c720976f16031aee.js",
+    "service-worker.js": "/Watch-Party-Front-End/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/Watch-Party-Front-End/static/css/2.510409cd.chunk.css.map",
+    "static/css/main.dab7cdbd.chunk.css.map": "/Watch-Party-Front-End/static/css/main.dab7cdbd.chunk.css.map",
+    "static/media/WatchPartyLogoWhtV1.png": "/Watch-Party-Front-End/static/media/WatchPartyLogoWhtV1.a9687198.png",
+    "static/media/default.svg": "/Watch-Party-Front-End/static/media/default.173d1842.svg",
+    "static/media/home_page_1.jpg": "/Watch-Party-Front-End/static/media/home_page_1.747fe496.jpg"
   }
 }
