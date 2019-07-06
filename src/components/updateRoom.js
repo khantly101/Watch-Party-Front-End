@@ -1,7 +1,7 @@
 import React 			from 'react'
 import { Redirect }		from 'react-router'
 
-let baseURL = 'http://localhost:3003' 
+let baseURL = 'http://localhost:3003'
 
 class UpdateRoom extends React.Component {
 	state = {
@@ -21,7 +21,7 @@ class UpdateRoom extends React.Component {
 	checkRoute = () => {
 		if (!this.props.location.state) {
 			window.location.href = '/'
-		} 
+		}
 	}
 
 	addState () {
