@@ -42,6 +42,7 @@ class UpdateRoom extends React.Component {
 			upload: event.target.files[0],
 			loaded: 0,
 		})
+		console.log(this.state)
 	}
 
 	handleSubmit = (event) => {
@@ -70,23 +71,17 @@ class UpdateRoom extends React.Component {
 
 	handleSubmitVid = (event) => {
 		event.preventDefault()
-		fetch(baseURL + '/partyroom/' + this.props.location.state.room._id, {
-			method: 'PUT',
+		fetch(baseURL + '/upload/' + this.props.location.state.room._id, {
+			method: 'POST',
 			body: JSON.stringify(
 				{
-					upload: this.state.upload
+					file: this.state.upload,
 				}),
-			headers: {
-				'Content-Type': 'application/json'
-			}
 		}).then (res => res.json())
 		.then (resJson => {
+			console.log(resJson)
 			this.setState({
-				roomName: '',
-				nameSpace: '',
-				description: '',
 				upload: '',
-				redirect: true
 			})
 		}).catch (error => console.error({'Error': error}))
 	}
