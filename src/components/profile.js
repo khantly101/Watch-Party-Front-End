@@ -69,6 +69,7 @@ class Profile extends React.Component {
 												<th><Link to={{ 
 													pathname: '/Room',
 													state: {
+														name: room.roomName,
 														index: index,
 														id: room._id,
 														rooms: this.state.rooms,

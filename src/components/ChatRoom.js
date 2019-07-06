@@ -160,32 +160,36 @@ class ChatRoom extends React.Component {
 
 		return (
 			<React.Fragment>
-				<div className='row chatRow justify-content-around'>
-				 	<div className='col-8'>
-						<ReactJWPlayer
-							playerId= { this.state.playerId }
-							playerScript= {this.state.playerScript}
-							file= {
-											(this.state.partyRooms[this.state.partyRoomIndex].upload)?
-												this.state.partyRooms[this.state.partyRoomIndex].upload:
-												this.state.file
-										}
-						/>
-
-						{
-							(this.props.location.state.currentUser !== this.props.location.state.creator)?
-							null:<button onClick={ () => { this.sendPlay() } }>Play Video</button>
-						}
-						{
-							(this.props.location.state.currentUser !== this.props.location.state.creator)?
-							null:<button onClick={ () => { this.sendStop() } }>Stop Video</button>
-						}
-
+				<div>
+					<div className='container'>
+						<h1>{this.props.location.state.name}</h1>
 					</div>
-					<div className='col-3 bg-info'>
-						<div className='chatBox'>
-							{this.state.partyRooms[this.state.partyRoomIndex].messages.map((theMessage, index) => {
-								return (
+					<div className='row chatRow justify-content-around'>
+					 	<div className='col-8'>
+							<ReactJWPlayer
+								playerId= { this.state.playerId }
+								playerScript= {this.state.playerScript}
+								file= {
+										(this.state.partyRooms[this.state.partyRoomIndex].upload)?
+											this.state.partyRooms[this.state.partyRoomIndex].upload:
+											this.state.file
+									}
+							/>
+							<div className='text-center'>
+								{
+									(this.props.location.state.currentUser !== this.props.location.state.creator)?
+									null:<button className='btn btn-secondary ' onClick={ () => { this.sendPlay() } }>Play Video</button>
+								}
+								{
+									(this.props.location.state.currentUser !== this.props.location.state.creator)?
+									null:<button className='btn btn-secondary' onClick={ () => { this.sendStop() } }>Stop Video</button>
+								}
+							</div>	
+						</div>
+						<div className='col-3 bg-info'>
+							<div className='chatBox'>
+								{this.state.partyRooms[this.state.partyRoomIndex].messages.map((theMessage, index) => {
+									return (
 										<div key={index}>
 											<div className='row'>
 												<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' />
@@ -195,22 +199,30 @@ class ChatRoom extends React.Component {
 											<p>{theMessage.message}</p>
 										</div>
 									)
-								})
-							}
-						</div>
-						<div>
-							<form onSubmit={this.handleSubmit} className='row'>
-								<input type='text' className='form-control col-9' id='chatMessage' name='chatMessage' onChange={this.handleChange} value={this.state.chatMessage} placeholder='Type Message'/>
-								<input type='submit' className='col-3' value='SEND'/>
-							</form>
+								})}
+							</div>
+							<div>
+								<form onSubmit={this.handleSubmit} className='row'>
+									<input type='text' className='form-control col-8' id='chatMessage' name='chatMessage' onChange={this.handleChange} value={this.state.chatMessage} placeholder='Type Message'/>
+									<input type='submit' className='col-4 btn btn-secondary' value='SEND'/>
+								</form>
+							</div>
 						</div>
 					</div>
-					<div>
+					<br />
+					<br />
+					<div className='bg-info userBox'>
 						{this.state.clients.map((theClient, index) => {
 							return (
-								<div key={index}>
-									<h1>This is current User List in Chat Room </h1>
-									imagePlaceholder: {theClient.pic} username: {theClient.userName} socketId: {theClient.sockId} clientSocketIndex: {index}
+								<div key={index} className='row innerBox'>
+									<div className='vLine'></div>
+									<div className='users'>
+										<img className='img-thumbnail rounded chatPic' src={theClient.pic} />
+										{
+											(this.props.location.state.currentUser === this.props.location.state.creator) ? <p className='text-danger'>{theClient.userName}</p> : <p>{theClient.userName}</p>
+										}
+									</div>
+									<div className='vLine'></div>
 								</div>
 							)
 						})}
