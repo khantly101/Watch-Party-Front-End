@@ -69,7 +69,7 @@ class ChatRoom extends React.Component {
 
 		gotLocalMediaStream	= (mediaStream) => {
 
-		const video = document.querySelector('video')
+		const video = document.getElementById('rtc')
 
 		console.log(`video object`)
 		console.log(video)
@@ -154,7 +154,7 @@ class ChatRoom extends React.Component {
 
 	componentWillUnmount() {
 
-		const video = document.querySelector('video')
+		const video = document.getElementById('rtc')
 		let localStream = video.srcObject
 		let tracks = localStream.getTracks()
 
@@ -243,7 +243,7 @@ class ChatRoom extends React.Component {
 					</div>
 				</div>
 				<br />
-				<video autoPlay width='100px'></video>
+				<video id='rtc' autoPlay width='100px'></video>
 				<br />
 				<div className='bg-info userBox'>
 					{this.state.clients.map((theClient, index) => {
