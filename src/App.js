@@ -13,6 +13,7 @@ import UpdateRoom							from './components/updateRoom.js'
 import EditUser								from './components/editUser.js'
 import OtherUserList						from './components/otherUserList.js'
 import OtherProfile							from './components/otherProfile.js'
+import EditPic								from './components/editPic.js'
 
 import './App.css'
 
@@ -93,12 +94,20 @@ class App extends React.Component {
 		localStorage.clear()
 	}
 
-	updateUser = (first, last, img, info) => {
+	updateUser = (first, last, info) => {
 		this.setState({
 			firstName: first,
 			lastName: last,
-			img: img,
 			info: info
+		})
+
+		localStorage.setItem('Data', JSON.stringify(this.state))
+		savedLogin = this.state
+	}
+
+	updatePic = (img) => {
+		this.setState({
+			img: img
 		})
 
 		localStorage.setItem('Data', JSON.stringify(this.state))
@@ -125,6 +134,9 @@ class App extends React.Component {
 									/>
 									<Route path='/EditProfile' render={() => (
 										<EditUser state={this.state} updateUser={this.updateUser} /> )}
+									/>
+									<Route path='/EditPic' render={() => (
+										<EditPic state={this.state} updatePic={this.updatePic} /> )}
 									/>
 									<Route path='/Room' component={ChatRoom} />
 									<Route path='/NewRoom' render={() => (

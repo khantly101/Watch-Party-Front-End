@@ -3,11 +3,9 @@ import { Redirect }		from 'react-router'
 
 let baseURL = 'http://localhost:3003' 
 
-class EditUser extends React.Component {
+class EditPic extends React.Component {
 	state = {
-		firstName: this.props.state.firstName || '',
-		lastName: this.props.state.lastName || '',
-		info: this.props.state.info || '',
+		img: this.props.state.img || '',
 		redirect: false
 	}
 
@@ -21,16 +19,14 @@ class EditUser extends React.Component {
 			method: 'PUT',
 			body: JSON.stringify(
 				{
-					firstName: this.state.firstName,
-					lastName: this.state.lastName,
-					info: this.state.info
+					img: this.state.img
 				}),
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		}).then (res => res.json())
 		.then (resJson => {
-			this.props.updateUser(this.state.firstName, this.state.lastName, this.state.info)
+			this.props.updatePic(this.state.img)
 			this.setState({
 				redirect: true
 			})
@@ -44,14 +40,8 @@ class EditUser extends React.Component {
 					<br />
 					<h1>Update Profile</h1>
 					<form onSubmit={this.handleSubmit}>
-						<label htmlFor='firstName'>First Name</label>
-						<input className='form-control' type='text' id='firstName' name='firstName' onChange={this.handleChange} value={this.state.firstName} placeholder='First Name' />
-						<br />
-						<label htmlFor='lastName'>Last Name</label>
-						<input className='form-control' type='text' id='lastName' name='lastName' onChange={this.handleChange} value={this.state.lastName} placeholder='Last Name' />
-						<br />
-						<label htmlFor='info'>Info</label>
-						<input className='form-control' type='text' id='info' name='info' onChange={this.handleChange} value={this.state.info} placeholder='Info' />
+						<label htmlFor='img'>Image</label>
+						<input className='form-control' type='text' id='img' name='img' onChange={this.handleChange} value={this.state.img} placeholder='Info' />
 						<br />
 						<input className='btn btn-primary' type='submit' value='Update'/>
 					</form>
@@ -65,4 +55,4 @@ class EditUser extends React.Component {
 	}
 }
 
-export default EditUser
+export default EditPic
