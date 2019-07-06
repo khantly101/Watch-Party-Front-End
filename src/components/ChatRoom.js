@@ -1,16 +1,15 @@
 import React         	from 'react'
 import ReactJWPlayer 	from 'react-jw-player'
 import io				from 'socket.io-client'
-
-let savedLogin = localStorage.getItem('Data') ? JSON.parse(localStorage.getItem('Data')) : {}
+import Default 			from './Images/default.svg'
 
 class ChatRoom extends React.Component {
 	state = {
 		socket: io('http://localhost:3003'),
 		partyRooms:[],
 		partyRoomIndex: '',
-		userName: savedLogin.currentUser,
-		pic: savedLogin.img,
+		userName: this.props.location.state.user,
+		pic: this.props.location.state.img,
 		chatMessage: '',
 		playerScript: 'https://cdn.jwplayer.com/libraries/7q9W8HVG.js',
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
@@ -225,7 +224,9 @@ class ChatRoom extends React.Component {
 								return (
 									<div key={index}>
 										<div className='row'>
-											<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' />
+											{
+												(theMessage.img) ? <img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='' /> : <img className='img-thumbnail rounded chatPic col-2' src={Default} alt='' />
+											}
 											<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
 										</div>
 										<hr className="line" />

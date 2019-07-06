@@ -3,8 +3,6 @@ import { Redirect }		from 'react-router'
 
 let baseURL = 'http://localhost:3003' 
 
-
-
 class UpdateRoom extends React.Component {
 	state = {
 		roomName: '',
@@ -17,7 +15,6 @@ class UpdateRoom extends React.Component {
 	componentWillMount() {
 		this.checkRoute()
 		this.addState()
-		console.log(this.props.location.state.room)
 	}
 
 	checkRoute = () => {
@@ -40,10 +37,7 @@ class UpdateRoom extends React.Component {
 	}
 
 	onUpload = (event) => {
-		this.setState({
-			upload: event.target.files[0],
-			loaded: 0,
-		})
+			console.log(event.target.files[0])
 	}
 
 	handleSubmit = (event) => {
@@ -73,15 +67,13 @@ class UpdateRoom extends React.Component {
 	handleSubmitVid = (event) => {
 
 		const data = new FormData()
-		data.append('file', event.target.files[0])
+		data.append('upload', event.target.files[0])
 
 		event.preventDefault()
 		fetch(baseURL + '/upload/' + this.props.location.state.room._id, {
 			method: 'POST',
 			body: data
-		}).then (resJson => {
-			console.log(resJson)
-		}).catch (error => console.error({'Error': error}))
+		}).then(res => console.log(res)).catch (error => console.error({'Error': error}))
 	}
 
 	render () {

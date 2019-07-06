@@ -64,6 +64,8 @@ class RoomList extends React.Component {
 													id: room._id,
 													rooms: this.state.rooms,
 													currentUser: this.props.state.id,
+													user: this.props.state.currentUser,
+													img: this.props.state.img,
 													creator: room.creator
 												}
 											}}>Link</Link></th>
