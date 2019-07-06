@@ -3,6 +3,7 @@ Watch Party is live chat application that allows users to create their own chat 
 
 Luis Rosario -
 Product manager
+Socket& Web Rtc Developer
 
 Mohammad Mujtaba Badar -
 Lead back-end developer
@@ -16,7 +17,7 @@ Release engineer
 
 
 # Purpose
-To create a place for users to premier their videos in real time in the form of a watch party. This a team project that is based off of the Chat Party created by Luis Rosario. It uses socket io library to create live chat rooms. This project aims to take integrate live synchronus video playback inside socket rooms using web rtc video.
+To create a place for users to premier their videos in real time in the form of a watch party. This a team project that is based off of the Chat Party created by Luis Rosario. It uses socket io library to create live chat rooms. This project aims to take integrate live synchronus video playback inside socket rooms using Jw-Player.
 
 Note:
 Socket IO USES websockets but it's not an implementation of websockets.
@@ -40,13 +41,5 @@ React, CRUD(CREATE, READ, UPDATE, DELETE) using REST API, Node.js, Express, Live
 - Integrate Web RTC Video
 - Integrate Watch Party Schedule using Date Objects
 
-# Biggest Challenges
-
-# Workflow on Trello:
-
-
-# Wireframes
-
-
-
 # Demo
+https://khantly101.github.io/Watch-Party-Front-End/
