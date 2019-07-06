@@ -67,7 +67,7 @@ class Profile extends React.Component {
 												<th>{room.roomName}</th>
 												<th>{room.description}</th>
 												<th><Link to={{ 
-													pathname: '/Watch-Party-Front-End/Room',
+													pathname: '/Room',
 													state: {
 														name: room.roomName,
 														index: index,
@@ -81,7 +81,7 @@ class Profile extends React.Component {
 												}}>Link</Link></th>
 												<th onClick={() => this.deleteRoom(room._id)}>Delete</th>
 												<th><Link to={{ 
-													pathname: '/Watch-Party-Front-End/UpdateRoom',
+													pathname: '/UpdateRoom',
 													state: {
 														room: room
 													}
