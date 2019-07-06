@@ -17,7 +17,7 @@
     "react-scripts": "3.0.1",
     "socket.io-client": "^2.2.0"
   },
-  "homepage": "https://khantly101.github.io/",
+  "homepage": "https://khantly101.github.io/Watch-Party-Front-End/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
