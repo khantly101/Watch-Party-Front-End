@@ -1,7 +1,7 @@
 import React 		from 'react'
 import { Link } 	from 'react-router-dom'
 
-let baseURL = 'http://localhost:3003' 
+let baseURL = 'https://wparty.herokuapp.com/' 
 
 class Login extends React.Component {
 	state = {
