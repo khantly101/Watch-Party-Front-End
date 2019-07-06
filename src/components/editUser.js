@@ -1,7 +1,7 @@
 import React 			from 'react'
 import { Redirect }		from 'react-router'
 
-let baseURL = 'http://wparty.herokuapp.com/'
+let baseURL = 'http://localhost:3003'
 
 class EditUser extends React.Component {
 	state = {
