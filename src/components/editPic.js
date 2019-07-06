@@ -48,7 +48,7 @@ class EditPic extends React.Component {
 					<br />
 				</div>
 				{
-					this.state.redirect ?  <Redirect to='/Profile'/> : null
+					this.state.redirect ?  <Redirect to='/Watch-Party-Front-End/Profile'/> : null
 				}
 			</div>
 		)

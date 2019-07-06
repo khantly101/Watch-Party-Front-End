@@ -19,7 +19,7 @@ class UpdateRoom extends React.Component {
 
 	checkRoute = () => {
 		if (!this.props.location.state) {
-			window.location.href = '/'
+			window.location.href = '/Watch-Party-Front-End/'
 		}
 	}
 
@@ -136,7 +136,7 @@ class UpdateRoom extends React.Component {
 					<br />
 				</div>
 				{
-					this.state.redirect ?  <Redirect to='/Profile'/> : null
+					this.state.redirect ?  <Redirect to='/Watch-Party-Front-End/Profile'/> : null
 				}
 			</div>
 		)
