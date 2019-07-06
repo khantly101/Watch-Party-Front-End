@@ -8,13 +8,15 @@ import Eject		from '@material-ui/icons/Eject'
 import HomeIcon		from '@material-ui/icons/Home'
 import Recent		from '@material-ui/icons/RecentActors'
 
+import Logo 		from './Images/WatchPartyLogoWhtV1.png'
+
 class Header extends React.Component {
 	render () {
 		return (
 			<div className='container-fluid header'>
 				<div className='row justify-content-around'>
-					<div className='col-9'>
-						<Link to='/'><h2>Watch Party</h2></Link>
+					<div className='col-7'>
+						<Link to='/'><img className='logo' src={Logo} alt=''/></Link>
 					</div>
 					{
 						this.props.loggedIn ? (
