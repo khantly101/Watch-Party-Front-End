@@ -2,7 +2,7 @@ import React 		from 'react'
 import { Link } 	from 'react-router-dom'
 import Default 		from './Images/default.svg'
 
-let baseURL 	= 'http://wparty.herokuapp.com/' 
+let baseURL 	= 'http://localhost:3003' 
 
 class Profile extends React.Component {
 	state = {

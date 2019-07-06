@@ -4,7 +4,7 @@ import io				from 'socket.io-client'
 
 class ChatRoom extends React.Component {
 	state = {
-		socket: io('http://wparty.herokuapp.com/'),
+		socket: io('http://localhost:3003'),
 		partyRooms:[],
 		partyRoomIndex: '',
 		userName: this.props.location.state.user,
