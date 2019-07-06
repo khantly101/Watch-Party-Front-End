@@ -37,6 +37,7 @@ class Profile extends React.Component {
 					<h1 className='display-4'>Hello, {this.props.state.firstName} {this.props.state.lastName}</h1>
 					<p className='display-12'>UserName: {this.props.state.currentUser}</p>
 					<Link to='/EditProfile'><button className='btn btn-secondary'>Edit Profile</button></Link>
+					<Link to='/EditPic'><button className='btn btn-secondary second'>Upload Profile Picture</button></Link>
 					<br />
 					<hr />
 					<p>About Me:</p>
