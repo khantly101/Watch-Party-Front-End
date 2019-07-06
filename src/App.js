@@ -121,33 +121,33 @@ class App extends React.Component {
 					<Header loggedIn={this.state.loggedIn} logout={this.logout} changeUser={this.changeUser}/>
 					<br />
 					{
-						(this.state.loggedIn) ? <Route path='/Watch-Party-Front-End/' exact render={() => (<RoomList fillRoom={this.fillRoom} state={this.state}/>)} /> : <Route path='/' exact component={Home} />
+						(this.state.loggedIn) ? <Route path='/' exact render={() => (<RoomList fillRoom={this.fillRoom} state={this.state}/>)} /> : <Route path='/' exact component={Home} />
 					}
 					{
-						(this.state.loggedIn) ? <Redirect to='/Watch-Party-Front-End/'/> : <Route path='/Watch-Party-Front-End/Create' component={NewUser} />
+						(this.state.loggedIn) ? <Redirect to='/'/> : <Route path='/Create' component={NewUser} />
 					}
 					{
 						(this.state.loggedIn) ?
 								<div>
-									<Route path='/Watch-Party-Front-End/Profile' render={() => (
+									<Route path='/Profile' render={() => (
 										<Profile state={this.state} fillRoom={this.fillRoom} /> )}
 									/>
-									<Route path='/Watch-Party-Front-End/EditProfile' render={() => (
+									<Route path='/EditProfile' render={() => (
 										<EditUser state={this.state} updateUser={this.updateUser} /> )}
 									/>
-									<Route path='/Watch-Party-Front-End/EditPic' render={() => (
+									<Route path='/EditPic' render={() => (
 										<EditPic state={this.state} updatePic={this.updatePic} /> )}
 									/>
-									<Route path='/Watch-Party-Front-End/Room' component={ChatRoom} />
-									<Route path='/Watch-Party-Front-End/NewRoom' render={() => (
+									<Route path='/Room' component={ChatRoom} />
+									<Route path='/NewRoom' render={() => (
 										<NewRoom state={this.state} /> )}
 									/>
-									<Route path='/Watch-Party-Front-End/UpdateRoom' component={UpdateRoom} />
-									<Route path='/Watch-Party-Front-End/UserList' component={OtherUserList} />
-									<Route path='/Watch-Party-Front-End/UserProfile' component={OtherProfile} />
+									<Route path='/UpdateRoom' component={UpdateRoom} />
+									<Route path='/UserList' component={OtherUserList} />
+									<Route path='/UserProfile' component={OtherProfile} />
 								</div>
 						:
-							<Redirect to='/Watch-Party-Front-End/'/>
+							<Redirect to='/'/>
 					}
 				</div>
 			</Router>

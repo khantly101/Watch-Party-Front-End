@@ -57,7 +57,7 @@ class RoomList extends React.Component {
 											<th>{room.roomName}</th>
 											<th>{room.description}</th>
 											<th><Link to={{ 
-												pathname: '/Watch-Party-Front-End/Room',
+												pathname: '/Room',
 												state: {
 													name: room.roomName,
 													index: index,
