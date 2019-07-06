@@ -1,6 +1,6 @@
 import React 		from 'react'
 
-let baseURL = 'https://wparty.herokuapp.com/' 
+let baseURL = 'https://wparty.herokuapp.com' 
 
 class NewUser extends React.Component {
 	state = {

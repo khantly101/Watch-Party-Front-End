@@ -1,7 +1,7 @@
 import React 			from 'react'
 import { Redirect }		from 'react-router'
 
-let baseURL = 'https://wparty.herokuapp.com/' 
+let baseURL = 'https://wparty.herokuapp.com' 
 
 class EditPic extends React.Component {
 	state = {

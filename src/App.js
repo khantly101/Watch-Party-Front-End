@@ -17,7 +17,7 @@ import EditPic								from './components/editPic.js'
 
 import './App.css'
 
-let baseURL 	= 'https://wparty.herokuapp.com/' 
+let baseURL 	= 'https://wparty.herokuapp.com' 
 let savedLogin 	= localStorage.getItem('Data') ? JSON.parse(localStorage.getItem('Data')) : {}
 
 class App extends React.Component {
