@@ -17,13 +17,13 @@ class ChatRoom extends React.Component {
 		playerImg: 'https://drive.google.com/file/d/1l64bgzH-Y9ztqQKrDkT716_zikQnhACg/view',
 		playerId: '',
 		clients: [],
-		webRtc: {
-			mediaStreamConstraints: {
-				video: true
-			},
-			video: {},
-			localStream: '',
-		}
+		// webRtc: {
+		// 	mediaStreamConstraints: {
+		// 		video: true
+		// 	},
+		// 	video: {},
+		// 	localStream: '',
+		// }
 	}
 
 	componentWillMount() {
@@ -67,21 +67,21 @@ class ChatRoom extends React.Component {
 
 		}
 
-		gotLocalMediaStream	= (mediaStream) => {
+	// 	gotLocalMediaStream	= (mediaStream) => {
 
-		const video = document.querySelector('video')
+	// 	const video = document.querySelector('video')
 
-		console.log(`video object`)
-		console.log(video)
+	// 	console.log(`video object`)
+	// 	console.log(video)
 
-		let localStream = mediaStream
-		video.srcObject = mediaStream
+	// 	let localStream = mediaStream
+	// 	video.srcObject = mediaStream
 
-	}
+	// }
 
-	handleLocalMediaStreamError = (error) => {
-		console.log('navigator.getUserMedia error: ', error)
-	}
+	// handleLocalMediaStreamError = (error) => {
+	// 	console.log('navigator.getUserMedia error: ', error)
+	// }
 
 	componentDidMount() {
 
@@ -147,22 +147,22 @@ class ChatRoom extends React.Component {
 	 		window.jwplayer().stop()
  		})
 
-		navigator.mediaDevices.getUserMedia(this.state.webRtc.mediaStreamConstraints)
-		.then(this.gotLocalMediaStream).catch(this.handleLocalMediaStreamError)
-		console.log(this.state.webRtc.video)
+		// navigator.mediaDevices.getUserMedia(this.state.webRtc.mediaStreamConstraints)
+		// .then(this.gotLocalMediaStream).catch(this.handleLocalMediaStreamError)
+		// console.log(this.state.webRtc.video)
 	}
 
 	componentWillUnmount() {
 
-		const video = document.querySelector('video')
-		let localStream = video.srcObject
-		let tracks = localStream.getTracks()
+		// const video = document.querySelector('video')
+		// let localStream = video.srcObject
+		// let tracks = localStream.getTracks()
 
-		tracks.forEach(function(track) {
-	 		track.stop()
- 		})
+		// tracks.forEach(function(track) {
+	 // 		track.stop()
+ 	// 	})
 
- 		video.srcObject = null
+ 	// 	video.srcObject = null
 
 		this.state.socket.close()
 	}
@@ -194,53 +194,29 @@ class ChatRoom extends React.Component {
 
 		return (
 			<React.Fragment>
-
 				<div>
 					<div className='container'>
 						<h1>{this.props.location.state.name}</h1>
-          </div>
-				<div className='row chatRow justify-content-around'>
-				 	<div className='col-8'>
-					<video autoPlay width='200px'></video>
-						<ReactJWPlayer
-							playerId= { this.state.playerId }
-							playerScript= {this.state.playerScript}
-							file= {
-											(this.state.partyRooms[this.state.partyRoomIndex].upload)?
-												this.state.partyRooms[this.state.partyRoomIndex].upload:
-												this.state.file
-										}
-						/>
-
-						{
-							(this.props.location.state.currentUser === this.props.location.state.creator)?
-							<button onClick={ () => { this.sendPlay() } }>Play Video</button>:null
-						}
-						{
-							(this.props.location.state.currentUser === this.props.location.state.creator)?
-							<button onClick={ () => { this.sendStop() } }>Stop Video</button>:null
-						}
-              
-					</div>
+         			</div>
 					<div className='row chatRow justify-content-around'>
-					 	<div className='col-8'>
+				 		<div className='col-8'>
 							<ReactJWPlayer
 								playerId= { this.state.playerId }
 								playerScript= {this.state.playerScript}
 								file= {
-										(this.state.partyRooms[this.state.partyRoomIndex].upload)?
-											this.state.partyRooms[this.state.partyRoomIndex].upload:
-											this.state.file
+									(this.state.partyRooms[this.state.partyRoomIndex].upload)?
+										this.state.partyRooms[this.state.partyRoomIndex].upload:
+										this.state.file
 									}
 							/>
 							<div className='text-center'>
 								{
-									(this.props.location.state.currentUser !== this.props.location.state.creator)?
-									null:<button className='btn btn-secondary ' onClick={ () => { this.sendPlay() } }>Play Video</button>
+									(this.props.location.state.currentUser === this.props.location.state.creator)?
+									<button onClick={ () => { this.sendPlay() } }>Play Video</button>:null
 								}
 								{
-									(this.props.location.state.currentUser !== this.props.location.state.creator)?
-									null:<button className='btn btn-secondary' onClick={ () => { this.sendStop() } }>Stop Video</button>
+									(this.props.location.state.currentUser === this.props.location.state.creator)?
+									<button onClick={ () => { this.sendStop() } }>Stop Video</button>:null
 								}
 							</div>	
 						</div>
@@ -250,7 +226,7 @@ class ChatRoom extends React.Component {
 									return (
 										<div key={index}>
 											<div className='row'>
-												<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' />
+												<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='' />
 												<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
 											</div>
 											<hr className="line" />
@@ -275,7 +251,7 @@ class ChatRoom extends React.Component {
 								<div key={index} className='row innerBox'>
 									<div className='vLine'></div>
 									<div className='users'>
-										<img className='img-thumbnail rounded chatPic' src={theClient.pic} />
+										<img className='img-thumbnail rounded chatPic' src={theClient.pic} alt=''/>
 										{
 											(this.props.location.state.currentUser === this.props.location.state.creator) ? <p className='text-danger'>{theClient.userName}</p> : <p>{theClient.userName}</p>
 										}
@@ -292,3 +268,5 @@ class ChatRoom extends React.Component {
 }
 
 export default ChatRoom
+
+//<video autoPlay width='200px'></video>

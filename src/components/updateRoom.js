@@ -73,10 +73,10 @@ class UpdateRoom extends React.Component {
 		event.preventDefault()
 		fetch(baseURL + '/upload/' + this.props.location.state.room._id, {
 			method: 'POST',
-			body: JSON.stringify(
+			body: 
 				{
-					file: this.state.upload,
-				}),
+					upload: this.state.upload,
+				},
 		}).then (res => res.json())
 		.then (resJson => {
 			console.log(resJson)
