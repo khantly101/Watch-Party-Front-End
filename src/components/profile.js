@@ -71,7 +71,9 @@ class Profile extends React.Component {
 													state: {
 														index: index,
 														id: room._id,
-														rooms: this.state.rooms
+														rooms: this.state.rooms,
+														currentUser: this.props.state.id,
+														creator: room.creator
 													}
 												}}>Link</Link></th>
 												<th onClick={() => this.deleteRoom(room._id)}>Delete</th>

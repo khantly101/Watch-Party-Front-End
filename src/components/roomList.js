@@ -61,7 +61,9 @@ class RoomList extends React.Component {
 												state: {
 													index: index,
 													id: room._id,
-													rooms: this.state.rooms
+													rooms: this.state.rooms,
+													currentUser: this.props.state.id,
+													creator: room.creator
 												}
 											}}>Link</Link></th>
 										</tr>

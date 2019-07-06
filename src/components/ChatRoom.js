@@ -22,6 +22,8 @@ class ChatRoom extends React.Component {
 	componentWillMount() {
 		this.checkRoute()
 
+		console.log(this.props.location.state.currentUser)
+
 		const { rooms } = this.props.location.state
 		const { index } = this.props.location.state
 
@@ -33,6 +35,8 @@ class ChatRoom extends React.Component {
 			console.log(this.state.partyRoomIndex)
 
 		})
+
+		console.log(this.props.location.state.creator)
 	}
 
 	checkRoute() {
@@ -169,11 +173,11 @@ class ChatRoom extends React.Component {
 						/>
 
 						{
-							(this.state.userName === this.state.partyRooms[this.state.partyRoomIndex].creator)?
+							(this.props.location.state.currentUser !== this.props.location.state.creator)?
 							null:<button onClick={ () => { this.sendPlay() } }>Play Video</button>
 						}
 						{
-							(this.state.userName === this.state.partyRooms[this.state.partyRoomIndex].creator)?
+							(this.props.location.state.currentUser !== this.props.location.state.creator)?
 							null:<button onClick={ () => { this.sendStop() } }>Stop Video</button>
 						}
 
