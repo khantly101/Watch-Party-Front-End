@@ -10,9 +10,9 @@ class ChatRoom extends React.Component {
 		userName: this.props.location.state.user,
 		pic: this.props.location.state.img,
 		chatMessage: '',
-		playerScript: 'https://cdn.jwplayer.com/libraries/7q9W8HVG.js',
+		playerScript: 'http://cdn.jwplayer.com/libraries/7q9W8HVG.js',
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-		playerImg: 'https://drive.google.com/file/d/1l64bgzH-Y9ztqQKrDkT716_zikQnhACg/view',
+		playerImg: '',
 		playerId: '',
 		clients: [],
 		// webRtc: {
