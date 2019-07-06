@@ -14,6 +14,7 @@ class ChatRoom extends React.Component {
 		chatMessage: '',
 		playerScript: 'https://cdn.jwplayer.com/libraries/7q9W8HVG.js',
 		file: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+		playerImg: 'https://drive.google.com/file/d/1l64bgzH-Y9ztqQKrDkT716_zikQnhACg/view',
 		playerId: '',
 		clients: []
 	}
@@ -160,11 +161,21 @@ class ChatRoom extends React.Component {
 						<ReactJWPlayer
 							playerId= { this.state.playerId }
 							playerScript= {this.state.playerScript}
-							file= {this.state.file}
+							file= {
+											(this.state.partyRooms[this.state.partyRoomIndex].upload)?
+												this.state.partyRooms[this.state.partyRoomIndex].upload:
+												this.state.file
+										}
 						/>
 
-						<button onClick={ () => { this.sendPlay() } }>Play Video</button>
-						<button onClick={ () => { this.sendStop() } }>Stop Video</button>
+						{
+							(this.state.userName === this.state.partyRooms[this.state.partyRoomIndex].creator)?
+							null:<button onClick={ () => { this.sendPlay() } }>Play Video</button>
+						}
+						{
+							(this.state.userName === this.state.partyRooms[this.state.partyRoomIndex].creator)?
+							null:<button onClick={ () => { this.sendStop() } }>Stop Video</button>
+						}
 
 					</div>
 					<div className='col-3 bg-info'>
@@ -173,9 +184,9 @@ class ChatRoom extends React.Component {
 								return (
 										<div key={index}>
 											<div className='row'>
-												<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' /> 
+												<img className='img-thumbnail rounded chatPic col-2' src={theMessage.pic} alt='Missing' />
 												<p className='col-9 align-self-center chatText text-wrap'>{theMessage.userName}</p>
-											</div> 
+											</div>
 											<hr className="line" />
 											<p>{theMessage.message}</p>
 										</div>
