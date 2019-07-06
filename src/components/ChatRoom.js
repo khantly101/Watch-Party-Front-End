@@ -90,11 +90,8 @@ class ChatRoom extends React.Component {
 			console.log(`newClient`)
 			console.log(activeClients)
 
-			let copyClient = [...this.state.clients]
-			copyClient.push(activeClients)
-
 			this.setState({
-				clients: copyClient
+				clients: activeClients
 			})
 		})
 		this.state.socket.on(`deleteFromList`, (msg,clientId) => {
