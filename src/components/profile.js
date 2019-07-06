@@ -54,8 +54,8 @@ class Profile extends React.Component {
 									<th scope='col'>Room Name</th>
 									<th scope='col'>Description</th>
 									<th scope='col'>Visit</th>
-									<th scope='col'>Edit</th>
 									<th scope='col'>Delete</th>
+									<th scope='col'>Edit</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -74,6 +74,8 @@ class Profile extends React.Component {
 														id: room._id,
 														rooms: this.state.rooms,
 														currentUser: this.props.state.id,
+														user: this.props.state.currentUser,
+														img: this.props.state.img,
 														creator: room.creator
 													}
 												}}>Link</Link></th>
