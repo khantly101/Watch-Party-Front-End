@@ -1,7 +1,7 @@
 import React 			from 'react'
 import { Redirect }		from 'react-router'
 
-let baseURL = 'http://localhost:3003'
+let baseURL = 'http://wparty.herokuapp.com/'
 
 class UpdateRoom extends React.Component {
 	state = {
