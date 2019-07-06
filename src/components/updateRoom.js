@@ -37,7 +37,9 @@ class UpdateRoom extends React.Component {
 	}
 
 	onUpload = (event) => {
-			console.log(event.target.files[0])
+			this.setState({
+				upload: event.target.files
+			})
 	}
 
 	handleSubmit = (event) => {
@@ -66,14 +68,38 @@ class UpdateRoom extends React.Component {
 
 	handleSubmitVid = (event) => {
 
-		const data = new FormData()
-		data.append('upload', event.target.files[0])
+	// event.preventDefault()
+	// var data = event.target.files;
+
+	// var xhr = new XMLHttpRequest();
+	// xhr.withCredentials = true;
+
+	// xhr.addEventListener('readystatechange', function () {
+	// 	if (this.readyState === 4) {
+	// 		console.log(this.responseText);
+	// 	}
+	// });
+
+	// xhr.open('POST', baseURL + '/upload/' + this.props.location.state.room._id);
+	// xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	// xhr.setRequestHeader('cache-control', 'no-cache');
+	// xhr.setRequestHeader('Postman-Token', '7a3f3e63-e9fd-4488-b2b4-428c93d24c2f');
+
+	// xhr.send(data);
 
 		event.preventDefault()
+		const data = new FormData()
+		data.append('upload', this.state.upload)
+		console.log(data)
+
 		fetch(baseURL + '/upload/' + this.props.location.state.room._id, {
 			method: 'POST',
-			body: data
-		}).then(res => console.log(res)).catch (error => console.error({'Error': error}))
+			file: data,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+			
+		}).catch (error => console.error({'Error': error}))
 	}
 
 	render () {
