@@ -111,8 +111,6 @@ class ChatRoom extends React.Component {
 			deleteClient.filter((theClient) => {
 				return theClient.sockId === clientId
 			})
-
-			// alert(msg + 'at index' + index)
 		})
 
 		//Listening to responses sent from server
